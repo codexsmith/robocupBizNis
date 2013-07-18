@@ -47,15 +47,27 @@ private:
     int M_opponent_player_types[11];
 
     rcsc::TeamGraphic M_team_graphic;
-
+    
+    //BIZNIS user command flag
+    bool userCommand;
+    
+    char* currentCommand;
+    
+    //mabe an array of commands?
+    
 public:
-
+    
     SampleCoach();
 
     virtual
     ~SampleCoach();
-
-
+    
+    bool hasUserCommand(){
+        return userCommand;
+    }
+    
+    char* getCommand();
+    
 protected:
 
     /*!

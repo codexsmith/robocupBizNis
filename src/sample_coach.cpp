@@ -82,6 +82,9 @@ struct RealSpeedMaxCmp
 SampleCoach::SampleCoach()
     : CoachAgent()
 {
+    
+    userCommand = false;
+    currentCommand = 'a';
     //
     // register audio memory & say message parsers
     //
@@ -139,6 +142,13 @@ SampleCoach::SampleCoach()
 SampleCoach::~SampleCoach()
 {
 
+}
+
+/*BIZNIS user command interface
+* called from action_chain_graph in calculateResultBestFirstSearch
+ */
+char* SampleCoach::getCommand(){
+    return currentCommand;
 }
 
 /*-------------------------------------------------------------------*/
