@@ -32,6 +32,7 @@
 #ifndef COOPERATIVE_ACTION_H
 #define COOPERATIVE_ACTION_H
 
+
 #include <rcsc/geom/vector_2d.h>
 #include <rcsc/game_time.h>
 #include <rcsc/types.h>
@@ -65,6 +66,8 @@ public:
     
 private:
 
+    static bool BIZNIS_COOP_DEBUG;
+    
     ActionCategory M_category; //!< action category type
     int M_index;
 

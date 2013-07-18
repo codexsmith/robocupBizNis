@@ -12,7 +12,7 @@ extern bool BIZNIS_DEBUG = true;
 
 extern int commandCount = 10;
 
-extern bool userCommand = true;
+extern bool userCommand = false;
 extern char currentCommand = 'N';
 
 

@@ -487,7 +487,7 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
 #endif
                 if ((*it).action().myCommand(currentCommand)) {
                     if(BIZNIS_DEBUG){
-                        std::cout << "USER EVAL " + currentCommand;
+                        std::cout << "USER EVAL " << currentCommand;
                     }
                     
                     if(commandCount > 0){
