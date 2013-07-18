@@ -73,6 +73,48 @@ CooperativeAction::setCategory( const ActionCategory & category )
     M_category = category;
 }
 
+/*BIZNIS commands*/
+
+const bool
+CooperativeAction::myCommand(const char key) const{
+    if(key == 'H'){
+        if(M_category == Hold){
+            return true;
+        }
+    }
+    else if(key == 'D'){
+        if(M_category == Dribble){
+            return true;
+        }
+    }
+    else if(key == 'P'){
+        if(M_category == Pass){
+            return true;
+        }
+    }
+    else if(key == 'S'){
+        if(M_category == Shoot){
+            return true;
+        }
+    }
+    else if(key == 'C'){
+        if(M_category == Clear){
+            return true;
+        }
+    }
+    else if(key == 'M'){
+        if(M_category == Move){
+            return true;
+        }
+    }
+    else if(key == 'N'){
+        if(M_category == NoAction){
+            return true;
+        }
+    }
+    return false;
+}
+
 /*-------------------------------------------------------------------*/
 /*!
 

@@ -26,6 +26,9 @@
 #include <config.h>
 #endif
 
+//BIZNIS COACH
+#include "sample_coach.h"
+
 #include "action_chain_graph.h"
 
 #include "hold_ball.h"
@@ -471,9 +474,17 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
             ++M_chain_count;
             std::vector< ActionStatePair > candidate_series = series;
             candidate_series.push_back(*it);
-
-            double ev = (*M_evaluator)((*it).state(), candidate_series);
+            
+           double ev = (*M_evaluator)((*it).state(), candidate_series);
             ++(*n_evaluated);
+            
+
+            if (SampleCoach::hasUserCommand()) {
+                if ((*it).action().myCommand(SampleCoach::getCommand())) {
+                    ev = M_best_evaluation + 1;
+                }
+            }
+            
 #ifdef ACTION_CHAIN_DEBUG
             write_chain_log(wm, M_chain_count, candidate_series, ev);
 #endif

@@ -49,9 +49,9 @@ private:
     rcsc::TeamGraphic M_team_graphic;
     
     //BIZNIS user command flag
-    bool userCommand;
+    static bool userCommand;
     
-    char* currentCommand;
+    static char currentCommand;
     
     //mabe an array of commands?
     
@@ -62,11 +62,11 @@ public:
     virtual
     ~SampleCoach();
     
-    bool hasUserCommand(){
+    static bool hasUserCommand(){
         return userCommand;
     }
     
-    char* getCommand();
+    static char getCommand();
     
 protected:
 

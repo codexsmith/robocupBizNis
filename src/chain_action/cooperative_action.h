@@ -62,7 +62,7 @@ public:
 
         NoAction,
     };
-
+    
 private:
 
     ActionCategory M_category; //!< action category type
@@ -121,7 +121,10 @@ public:
     virtual
     ~CooperativeAction()
       { }
-
+    
+    //BIZNIS 
+    const bool myCommand(char key) const;
+    
     void setIndex( const int i ) { M_index = i; }
 
     void setFirstBallSpeed( const double & speed );

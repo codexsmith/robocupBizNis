@@ -84,7 +84,7 @@ SampleCoach::SampleCoach()
 {
     
     userCommand = false;
-    currentCommand = "a";
+    currentCommand = "N";
     //
     // register audio memory & say message parsers
     //
@@ -147,7 +147,7 @@ SampleCoach::~SampleCoach()
 /*BIZNIS user command interface
 * called from action_chain_graph in calculateResultBestFirstSearch
  */
-char* SampleCoach::getCommand(){
+char SampleCoach::getCommand(){
     return currentCommand;
 }
 
