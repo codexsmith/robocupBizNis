@@ -46,6 +46,8 @@
 
 using namespace rcsc;
 
+char ActGen_SimpleDribble::commandKey = 'SD';
+
 /*-------------------------------------------------------------------*/
 /*!
 

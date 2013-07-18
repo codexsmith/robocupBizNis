@@ -39,6 +39,8 @@
 
 using namespace rcsc;
 
+
+char ActGen_ShortDribble::commandKey = 'D';
 /*-------------------------------------------------------------------*/
 /*!
 

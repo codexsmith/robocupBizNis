@@ -43,6 +43,8 @@ using namespace rcsc;
 
 static const int VALID_PLAYER_THRESHOLD = 10;
 
+char ActGen_Shoot::commandKey = 'W';
+
 /*-------------------------------------------------------------------*/
 /*!
 

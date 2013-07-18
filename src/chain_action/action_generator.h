@@ -52,7 +52,6 @@ public:
     typedef boost::shared_ptr< ActionGenerator > Ptr;
     typedef boost::shared_ptr< const ActionGenerator > ConstPtr;
     
-    char* commandKey = "0";
     
 private:
 
@@ -64,6 +63,8 @@ private:
     
 public:
 
+    static char commandKey;
+    
     ActionGenerator() {
     }
 

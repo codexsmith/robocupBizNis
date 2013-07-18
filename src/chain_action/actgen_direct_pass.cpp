@@ -54,6 +54,8 @@ static const double SAME_PASSER_POS_THRESHOLD2 = std::pow( 10.0, 2 );
 
 namespace {
 
+    
+    
 /*-------------------------------------------------------------------*/
 /*!
 
@@ -83,6 +85,7 @@ s_get_ball_speed_for_pass( const double & distance )
 
 }
 
+char ActGen_DirectPass::commandKey = 'P';
 
 /*-------------------------------------------------------------------*/
 /*!

@@ -38,6 +38,8 @@
 
 using namespace rcsc;
 
+char ActGen_SelfPass::commandKey = 'SP';
+
 /*-------------------------------------------------------------------*/
 /*!
 

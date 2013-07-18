@@ -31,10 +31,11 @@
 
 class ActGen_Cross
     : public ActionGenerator {
-
-    char* commandKey = "C";    
         
 public:
+    
+    static char commandKey;
+    
     virtual
     void generate( std::vector< ActionStatePair > * result,
                    const PredictState & state,

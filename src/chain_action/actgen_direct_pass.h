@@ -33,9 +33,12 @@
 
 class ActGen_DirectPass
     : public ActionGenerator {
-        
-        char* commandKey = "P";
+        private:
+           
 public:
+    
+     static char commandKey;
+    
     ActGen_DirectPass();
 
     virtual

@@ -45,6 +45,9 @@ using namespace rcsc;
 /*!
 
  */
+
+char ActGen_StrictCheckPass::commandKey = 'CP';
+
 void
 ActGen_StrictCheckPass::generate( std::vector< ActionStatePair > * result,
                                   const PredictState & state,

@@ -64,82 +64,80 @@ std::vector< std::pair< Vector2D, double > > ActionChainGraph::S_evaluated_point
 
 namespace {
 
-const double HEAT_COLOR_SCALE = 128.0;
-const double HEAT_COLOR_PERIOD = 2.0 * M_PI;
+    const double HEAT_COLOR_SCALE = 128.0;
+    const double HEAT_COLOR_PERIOD = 2.0 * M_PI;
 
-inline
-int
-heat_color( const double & x )
-{
-    //return std::floor( ( std::cos( x ) + 1.0 ) * HEAT_COLOR_SCALE );
-    return static_cast< int >( std::floor( ( std::cos( x ) + 1.0 ) * HEAT_COLOR_SCALE ) );
-}
+    inline
+    int
+    heat_color(const double & x) {
+        //return std::floor( ( std::cos( x ) + 1.0 ) * HEAT_COLOR_SCALE );
+        return static_cast<int> (std::floor((std::cos(x) + 1.0) * HEAT_COLOR_SCALE));
+    }
 
-inline
-void
-debug_paint_evaluate_color( const Vector2D & pos,
-                            const double & value,
-                            const double & min,
-                            const double & max )
-{
-    double position = ( value - min ) / ( max - min );
-    if ( position < 0.0 ) position = -position;
-    if ( position > 2.0 ) position = std::fmod( position, 2.0 );
-    if ( position > 1.0 ) position = 1.0 - ( position - 1.0 );
+    inline
+    void
+    debug_paint_evaluate_color(const Vector2D & pos,
+            const double & value,
+            const double & min,
+            const double & max) {
+        double position = (value - min) / (max - min);
+        if (position < 0.0) position = -position;
+        if (position > 2.0) position = std::fmod(position, 2.0);
+        if (position > 1.0) position = 1.0 - (position - 1.0);
 
-    double shift = 0.5 * position + 1.7 * ( 1.0 - position );
-    double x = shift + position * HEAT_COLOR_PERIOD;
+        double shift = 0.5 * position + 1.7 * (1.0 - position);
+        double x = shift + position * HEAT_COLOR_PERIOD;
 
-    int r = heat_color( x );
-    int g = heat_color( x + M_PI*0.5 );
-    int b = heat_color( x + M_PI );
+        int r = heat_color(x);
+        int g = heat_color(x + M_PI * 0.5);
+        int b = heat_color(x + M_PI);
 
-    // dlog.addText( Logger::ACTION_CHAIN,
-    //               "(paint) (%.2f %.2f) eval=%f -> %d %d %d",
-    //               pos.x, pos.y, value, r, g, b );
-    char str[16];
-    snprintf( str, 16, "%lf", value );
-    dlog.addMessage( Logger::ACTION_CHAIN,
-                     pos, str, "#ffffff" );
-    dlog.addRect( Logger::ACTION_CHAIN,
-                  pos.x - 0.1, pos.y - 0.1, 0.2, 0.2,
-                  r, g, b, true );
-}
+        // dlog.addText( Logger::ACTION_CHAIN,
+        //               "(paint) (%.2f %.2f) eval=%f -> %d %d %d",
+        //               pos.x, pos.y, value, r, g, b );
+        char str[16];
+        snprintf(str, 16, "%lf", value);
+        dlog.addMessage(Logger::ACTION_CHAIN,
+                pos, str, "#ffffff");
+        dlog.addRect(Logger::ACTION_CHAIN,
+                pos.x - 0.1, pos.y - 0.1, 0.2, 0.2,
+                r, g, b, true);
+    }
 
 }
 
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
-ActionChainGraph::ActionChainGraph( const FieldEvaluator::ConstPtr & evaluator,
-                                    const ActionGenerator::ConstPtr & generator,
-                                    unsigned long max_chain_length,
-                                    long max_evaluate_limit )
-    : M_evaluator( evaluator ),
-      M_action_generator( generator ),
-      M_chain_count( 0 ),
-      M_best_chain_count( 0 ),
-      M_max_chain_length( max_chain_length ),
-      M_max_evaluate_limit( max_evaluate_limit ),
-      M_result(),
-      M_best_evaluation( -std::numeric_limits< double >::max() )
-{
+ActionChainGraph::ActionChainGraph(const FieldEvaluator::ConstPtr & evaluator,
+        const ActionGenerator::ConstPtr & generator,
+        unsigned long max_chain_length,
+        long max_evaluate_limit)
+: M_evaluator(evaluator),
+M_action_generator(generator),
+M_chain_count(0),
+M_best_chain_count(0),
+M_max_chain_length(max_chain_length),
+M_max_evaluate_limit(max_evaluate_limit),
+M_result(),
+M_best_evaluation(-std::numeric_limits< double >::max()) {
 #ifdef DEBUG_PAINT_EVALUATED_POINTS
     S_evaluated_points.clear();
-    S_evaluated_points.reserve( DEFAULT_MAX_EVALUATE_LIMIT + 1 );
+    S_evaluated_points.reserve(DEFAULT_MAX_EVALUATE_LIMIT + 1);
 #endif
 }
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 void
-ActionChainGraph::calculateResult( const WorldModel & wm )
-{
-    debugPrintCurrentState( wm );
+ActionChainGraph::calculateResult(const WorldModel & wm) {
+    debugPrintCurrentState(wm);
 
 #if (defined DEBUG_PROFILE) || (defined ACTION_CHAIN_LOAD_DEBUG)
     Timer timer;
@@ -152,116 +150,110 @@ ActionChainGraph::calculateResult( const WorldModel & wm )
     //
     // best first
     //
-    calculateResultBestFirstSearch( wm, &n_evaluated );
+    calculateResultBestFirstSearch(wm, &n_evaluated);
 
-    if ( M_result.empty() )
-    {
-        const PredictState current_state( wm );
+    if (M_result.empty()) {
+        const PredictState current_state(wm);
 
-        PredictState::ConstPtr result_state( new PredictState( current_state, 1 ) );
-        CooperativeAction::Ptr action( new HoldBall( wm.self().unum(),
-                                                     wm.ball().pos(),
-                                                     1,
-                                                     "defaultHold" ) );
-        action->setFinalAction( true );
+        PredictState::ConstPtr result_state(new PredictState(current_state, 1));
+        CooperativeAction::Ptr action(new HoldBall(wm.self().unum(),
+                wm.ball().pos(),
+                1,
+                "defaultHold"));
+        action->setFinalAction(true);
 
-        M_result.push_back( ActionStatePair( action, result_state ) );
+        M_result.push_back(ActionStatePair(action, result_state));
     }
 
-    write_chain_log( ">>>>> best chain: ",
-                     wm,
-                     M_best_chain_count,
-                     M_result,
-                     M_best_evaluation );
+    write_chain_log(">>>>> best chain: ",
+            wm,
+            M_best_chain_count,
+            M_result,
+            M_best_evaluation);
 
 #if (defined DEBUG_PROFILE) || (defined ACTION_CHAIN_LOAD_DEBUG)
     const double msec = timer.elapsedReal();
 #ifdef DEBUG_PROFILE
-    dlog.addText( Logger::ACTION_CHAIN,
-                  __FILE__": PROFILE size=%d elapsed %f [ms]",
-                  M_chain_count,
-                  msec );
+    dlog.addText(Logger::ACTION_CHAIN,
+            __FILE__": PROFILE size=%d elapsed %f [ms]",
+            M_chain_count,
+            msec);
 #endif
 #ifdef ACTION_CHAIN_LOAD_DEBUG
-    std::fprintf( stderr,
-                  "# recursive search: %2d [%ld] % 10lf msec, n=%4lu, average=% 10lf\n",
-                  wm.self().unum(),
-                  wm.time().cycle(),
-                  msec,
-                  n_evaluated,
-                  ( n_evaluated == 0 ? 0.0 : msec / n_evaluated ) );
+    std::fprintf(stderr,
+            "# recursive search: %2d [%ld] % 10lf msec, n=%4lu, average=% 10lf\n",
+            wm.self().unum(),
+            wm.time().cycle(),
+            msec,
+            n_evaluated,
+            (n_evaluated == 0 ? 0.0 : msec / n_evaluated));
 #endif
 #endif
 
 #ifdef DEBUG_PAINT_EVALUATED_POINTS
-    if ( ! S_evaluated_points.empty() )
-    {
+    if (!S_evaluated_points.empty()) {
         double min_eval = +std::numeric_limits< double >::max();
         double max_eval = -std::numeric_limits< double >::max();
         const std::vector< std::pair< Vector2D, double > >::const_iterator end = S_evaluated_points.end();
-        for ( std::vector< std::pair< Vector2D, double > >::const_iterator it = S_evaluated_points.begin();
-              it != end;
-              ++it )
-        {
-            if ( min_eval > it->second ) min_eval = it->second;
-            if ( max_eval < it->second ) max_eval = it->second;
+        for (std::vector< std::pair< Vector2D, double > >::const_iterator it = S_evaluated_points.begin();
+                it != end;
+                ++it) {
+            if (min_eval > it->second) min_eval = it->second;
+            if (max_eval < it->second) max_eval = it->second;
         }
 
-        if ( std::fabs( min_eval - max_eval ) < 1.0e-5 )
-        {
+        if (std::fabs(min_eval - max_eval) < 1.0e-5) {
             max_eval = min_eval + 1.0e-5;
         }
 
-        for ( std::vector< std::pair< Vector2D, double > >::const_iterator it = S_evaluated_points.begin();
-              it != end;
-              ++it )
-        {
-            debug_paint_evaluate_color( it->first, it->second, min_eval, max_eval );
+        for (std::vector< std::pair< Vector2D, double > >::const_iterator it = S_evaluated_points.begin();
+                it != end;
+                ++it) {
+            debug_paint_evaluate_color(it->first, it->second, min_eval, max_eval);
         }
     }
 #endif
 }
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 void
-ActionChainGraph::calculateResultChain( const WorldModel & wm,
-                                        unsigned long * n_evaluated )
-{
+ActionChainGraph::calculateResultChain(const WorldModel & wm,
+        unsigned long * n_evaluated) {
     M_result.clear();
     M_best_evaluation = -std::numeric_limits< double >::max();
 
-    const PredictState current_state( wm );
+    const PredictState current_state(wm);
 
     std::vector< ActionStatePair > empty_path;
     double evaluation;
 
-    doSearch( wm, current_state, empty_path,
-              &M_result, &evaluation, n_evaluated,
-              M_max_chain_length,
-              M_max_evaluate_limit );
+    doSearch(wm, current_state, empty_path,
+            &M_result, &evaluation, n_evaluated,
+            M_max_chain_length,
+            M_max_evaluate_limit);
 
     M_best_evaluation = evaluation;
 }
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 bool
-ActionChainGraph::doSearch( const WorldModel & wm,
-                            const PredictState & state,
-                            const std::vector< ActionStatePair > & path,
-                            std::vector< ActionStatePair > * result,
-                            double * result_evaluation,
-                            unsigned long * n_evaluated,
-                            unsigned long max_chain_length,
-                            long max_evaluate_limit )
-{
-    if ( path.size() > max_chain_length )
-    {
+ActionChainGraph::doSearch(const WorldModel & wm,
+        const PredictState & state,
+        const std::vector< ActionStatePair > & path,
+        std::vector< ActionStatePair > * result,
+        double * result_evaluation,
+        unsigned long * n_evaluated,
+        unsigned long max_chain_length,
+        long max_evaluate_limit) {
+    if (path.size() > max_chain_length) {
         return false;
     }
 
@@ -269,15 +261,14 @@ ActionChainGraph::doSearch( const WorldModel & wm,
     //
     // check evaluation limit
     //
-    if ( max_evaluate_limit != -1
-         && *n_evaluated >= static_cast< unsigned int >( max_evaluate_limit ) )
-    {
-        dlog.addText( Logger::ACTION_CHAIN,
-                      "cut by max evaluate limit %d", *n_evaluated );
+    if (max_evaluate_limit != -1
+            && *n_evaluated >= static_cast<unsigned int> (max_evaluate_limit)) {
+        dlog.addText(Logger::ACTION_CHAIN,
+                "cut by max evaluate limit %d", *n_evaluated);
 #if 0
 #if defined( ACTION_CHAIN_DEBUG ) || defined( ACTION_CHAIN_LOAD_DEBUG )
         std::cerr << "Max evaluate limit " << max_evaluate_limit
-                  << " exceeded" << std::endl;
+                << " exceeded" << std::endl;
 #endif
 #endif
         return false;
@@ -288,7 +279,7 @@ ActionChainGraph::doSearch( const WorldModel & wm,
     // check current state
     //
     std::vector< ActionStatePair > best_path = path;
-    double max_ev = (*M_evaluator)( state, path );
+    double max_ev = (*M_evaluator)(state, path);
 #ifdef DO_MONTECARLO_SEARCH
     double eval_sum = 0;
     long n_eval = 0;
@@ -296,58 +287,54 @@ ActionChainGraph::doSearch( const WorldModel & wm,
 
     ++M_chain_count;
 #ifdef ACTION_CHAIN_DEBUG
-    write_chain_log( wm, M_chain_count, path, max_ev );
+    write_chain_log(wm, M_chain_count, path, max_ev);
 #endif
 #ifdef DEBUG_PAINT_EVALUATED_POINTS
-    S_evaluated_points.push_back( std::pair< Vector2D, double >( state.ball().pos(), max_ev ) );
+    S_evaluated_points.push_back(std::pair< Vector2D, double >(state.ball().pos(), max_ev));
 #endif
-    ++ (*n_evaluated);
+    ++(*n_evaluated);
 
 
     //
     // generate candidates
     //
     std::vector< ActionStatePair > candidates;
-    if ( path.empty()
-         || ! ( *( path.rbegin() ) ).action().isFinalAction() )
-    {
-        M_action_generator->generate( &candidates, state, wm, path );
+    if (path.empty()
+            || !(*(path.rbegin())).action().isFinalAction()) {
+        M_action_generator->generate(&candidates, state, wm, path);
     }
 
 
     //
     // test each candidate
     //
-    for ( std::vector< ActionStatePair >::const_iterator it = candidates.begin();
-          it != candidates.end();
-          ++it )
-    {
+    for (std::vector< ActionStatePair >::const_iterator it = candidates.begin();
+            it != candidates.end();
+            ++it) {
         std::vector< ActionStatePair > new_path = path;
         std::vector< ActionStatePair > candidate_result;
 
-        new_path.push_back( *it );
+        new_path.push_back(*it);
 
         double ev;
-        const bool exist = doSearch( wm,
-                                     (*it).state(),
-                                     new_path,
-                                     &candidate_result,
-                                     &ev,
-                                     n_evaluated,
-                                     max_chain_length,
-                                     max_evaluate_limit );
-        if ( ! exist )
-        {
+        const bool exist = doSearch(wm,
+                (*it).state(),
+                new_path,
+                &candidate_result,
+                &ev,
+                n_evaluated,
+                max_chain_length,
+                max_evaluate_limit);
+        if (!exist) {
             continue;
         }
 #ifdef ACTION_CHAIN_DEBUG
-        write_chain_log( wm, M_chain_count, candidate_result, ev );
+        write_chain_log(wm, M_chain_count, candidate_result, ev);
 #endif
 #ifdef DEBUG_PAINT_EVALUATED_POINTS
-        S_evaluated_points.push_back( std::pair< Vector2D, double >( it->state().ball().pos(), ev ) );
+        S_evaluated_points.push_back(std::pair< Vector2D, double >(it->state().ball().pos(), ev));
 #endif
-        if ( ev > max_ev )
-        {
+        if (ev > max_ev) {
             max_ev = ev;
             best_path = candidate_result;
         }
@@ -360,12 +347,9 @@ ActionChainGraph::doSearch( const WorldModel & wm,
 
     *result = best_path;
 #ifdef DO_MONTECARLO_SEARCH
-    if ( n_eval == 0 )
-    {
+    if (n_eval == 0) {
         *result_evaluation = max_ev;
-    }
-    else
-    {
+    } else {
         *result_evaluation = eval_sum / n_eval;
     }
 #else
@@ -375,27 +359,26 @@ ActionChainGraph::doSearch( const WorldModel & wm,
     return true;
 }
 
-class ChainComparator
-{
+class ChainComparator {
 public:
-    bool operator()( const std::pair< std::vector< ActionStatePair >,
-                     double > & a,
-                     const std::pair< std::vector< ActionStatePair >,
-                     double > & b )
-      {
-          return ( a.second < b.second );
-      }
+
+    bool operator()(const std::pair< std::vector< ActionStatePair >,
+            double > & a,
+            const std::pair< std::vector< ActionStatePair >,
+            double > & b) {
+        return ( a.second < b.second);
+    }
 };
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 void
-ActionChainGraph::calculateResultBestFirstSearch( const WorldModel & wm,
-                                                  unsigned long * n_evaluated )
-
-{
+ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
+        unsigned long * n_evaluated)
+ {
     //
     // initialize
     //
@@ -409,42 +392,40 @@ ActionChainGraph::calculateResultBestFirstSearch( const WorldModel & wm,
     // create priority queue
     //
     std::priority_queue< std::pair< std::vector< ActionStatePair >, double >,
-        std::vector< std::pair< std::vector< ActionStatePair >, double > >,
-        ChainComparator > queue;
+            std::vector< std::pair< std::vector< ActionStatePair >, double > >,
+            ChainComparator > queue;
 
 
     //
     // check current state
     //
-    const PredictState current_state( wm );
+    const PredictState current_state(wm);
     const std::vector< ActionStatePair > empty_path;
-    const double current_evaluation = (*M_evaluator)( current_state, empty_path );
+    const double current_evaluation = (*M_evaluator)(current_state, empty_path);
     ++M_chain_count;
     ++(*n_evaluated);
 #ifdef ACTION_CHAIN_DEBUG
-    write_chain_log( wm, M_chain_count, empty_path, current_evaluation );
+    write_chain_log(wm, M_chain_count, empty_path, current_evaluation);
 #endif
 #ifdef DEBUG_PAINT_EVALUATED_POINTS
-    S_evaluated_points.push_back( std::pair< Vector2D, double >
-                                  ( current_state.ball().pos(), current_evaluation ) );
+    S_evaluated_points.push_back(std::pair< Vector2D, double >
+            (current_state.ball().pos(), current_evaluation));
 #endif
     M_result = empty_path;
     M_best_evaluation = current_evaluation;
 
-    queue.push( std::pair< std::vector< ActionStatePair >, double >
-                ( empty_path, current_evaluation ) );
+    queue.push(std::pair< std::vector< ActionStatePair >, double >
+            (empty_path, current_evaluation));
 
 
     //
     // main loop
     //
-    for(;;)
-    {
+    for (;;) {
         //
         // pick up most valuable action chain
         //
-        if ( queue.empty() )
-        {
+        if (queue.empty()) {
             break;
         }
 
@@ -456,12 +437,9 @@ ActionChainGraph::calculateResultBestFirstSearch( const WorldModel & wm,
         // get state candidates
         //
         const PredictState * state;
-        if ( series.empty() )
-        {
+        if (series.empty()) {
             state = &current_state;
-        }
-        else
-        {
+        } else {
             state = &((*(series.rbegin())).state());
         }
 
@@ -470,17 +448,16 @@ ActionChainGraph::calculateResultBestFirstSearch( const WorldModel & wm,
         // generate action candidates
         //
         std::vector< ActionStatePair > candidates;
-        if ( series.size() < M_max_chain_length
-             && ( series.empty()
-                  || ! ( *( series.rbegin() ) ).action().isFinalAction() ) )
-        {
-            M_action_generator->generate( &candidates, *state, wm, series );
+        if (series.size() < M_max_chain_length
+                && (series.empty()
+                || !(*(series.rbegin())).action().isFinalAction())) {
+            M_action_generator->generate(&candidates, *state, wm, series);
 #ifdef ACTION_CHAIN_DEBUG
-            dlog.addText( Logger::ACTION_CHAIN,
-                          ">>>> generate (%s[%d]) candidate_size=%d <<<<<",
-                          ( series.empty() ? "empty" : series.rbegin()->action().description() ),
-                          ( series.empty() ? -1 : series.rbegin()->action().index() ),
-                          candidates.size() );
+            dlog.addText(Logger::ACTION_CHAIN,
+                    ">>>> generate (%s[%d]) candidate_size=%d <<<<<",
+                    (series.empty() ? "empty" : series.rbegin()->action().description()),
+                    (series.empty() ? -1 : series.rbegin()->action().index()),
+                    candidates.size());
 #endif
         }
 
@@ -488,124 +465,109 @@ ActionChainGraph::calculateResultBestFirstSearch( const WorldModel & wm,
         //
         // evaluate each candidate and push to priority queue
         //
-        for ( std::vector< ActionStatePair >::const_iterator it = candidates.begin();
-              it != candidates.end();
-              ++ it )
-        {
+        for (std::vector< ActionStatePair >::const_iterator it = candidates.begin();
+                it != candidates.end();
+                ++it) {
             ++M_chain_count;
             std::vector< ActionStatePair > candidate_series = series;
-            candidate_series.push_back( *it );
+            candidate_series.push_back(*it);
 
-            double ev = (*M_evaluator)( (*it).state(), candidate_series );
+            double ev = (*M_evaluator)((*it).state(), candidate_series);
             ++(*n_evaluated);
 #ifdef ACTION_CHAIN_DEBUG
-            write_chain_log( wm, M_chain_count, candidate_series, ev );
+            write_chain_log(wm, M_chain_count, candidate_series, ev);
 #endif
 #ifdef DEBUG_PAINT_EVALUATED_POINTS
-            S_evaluated_points.push_back( std::pair< Vector2D, double >
-                                          ( it->state().ball().pos(), ev ) );
+            S_evaluated_points.push_back(std::pair< Vector2D, double >
+                    (it->state().ball().pos(), ev));
 #endif
 
-            if ( ev > M_best_evaluation )
-            {
+            if (ev > M_best_evaluation) {
 #ifdef ACTION_CHAIN_DEBUG
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "<<<< update best result." );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "<<<< update best result.");
 #endif
                 M_best_chain_count = M_chain_count;
                 M_best_evaluation = ev;
                 M_result = candidate_series;
             }
 
-            if ( M_max_evaluate_limit != -1
-                 && *n_evaluated >= static_cast< unsigned int >( M_max_evaluate_limit ) )
-            {
+            if (M_max_evaluate_limit != -1
+                    && *n_evaluated >= static_cast<unsigned int> (M_max_evaluate_limit)) {
 #ifdef ACTION_CHAIN_DEBUG
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "***** over max evaluation count *****" );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "***** over max evaluation count *****");
 #endif
                 return;
             }
 
-            queue.push( std::pair< std::vector< ActionStatePair >, double >
-                        ( candidate_series, ev ) );
+            queue.push(std::pair< std::vector< ActionStatePair >, double >
+                    (candidate_series, ev));
         }
     }
 }
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 void
-ActionChainGraph::debugPrintCurrentState( const WorldModel & wm )
-{
+ActionChainGraph::debugPrintCurrentState(const WorldModel & wm) {
 #ifndef ACTION_CHAIN_DEBUG
-    static_cast< void >( wm );
+    static_cast<void> (wm);
 #else
-    dlog.addText( Logger::ACTION_CHAIN, "=====" );
+    dlog.addText(Logger::ACTION_CHAIN, "=====");
 
-    for ( int n = 1; n <= ServerParam::i().maxPlayer(); ++n )
-    {
-        if ( n == wm.self().unum() )
-        {
-            dlog.addText( Logger::ACTION_CHAIN,
-                          "n = %d, self", n );
-        }
-        else
-        {
-            const AbstractPlayerObject * t = wm.teammate( n );
+    for (int n = 1; n <= ServerParam::i().maxPlayer(); ++n) {
+        if (n == wm.self().unum()) {
+            dlog.addText(Logger::ACTION_CHAIN,
+                    "n = %d, self", n);
+        } else {
+            const AbstractPlayerObject * t = wm.teammate(n);
 
-            if ( t )
-            {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "n = %d, OK", n );
-            }
-            else
-            {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "n = %d, null", n );
+            if (t) {
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "n = %d, OK", n);
+            } else {
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "n = %d, null", n);
             }
         }
     }
-    dlog.addText( Logger::ACTION_CHAIN, "=====" );
+    dlog.addText(Logger::ACTION_CHAIN, "=====");
 
 
     AbstractPlayerCont::const_iterator end = wm.allTeammates().end();
-    for ( AbstractPlayerCont::const_iterator it = wm.allTeammates().begin();
-          it != end;
-          ++it )
-    {
-        if ( (*it)->isSelf() )
-        {
-            dlog.addText( Logger::ACTION_CHAIN,
-                          "teammate %d, self", (*it)->unum() );
-        }
-        else
-        {
-            dlog.addText( Logger::ACTION_CHAIN,
-                          "teammate %d", (*it)->unum() );
+    for (AbstractPlayerCont::const_iterator it = wm.allTeammates().begin();
+            it != end;
+            ++it) {
+        if ((*it)->isSelf()) {
+            dlog.addText(Logger::ACTION_CHAIN,
+                    "teammate %d, self", (*it)->unum());
+        } else {
+            dlog.addText(Logger::ACTION_CHAIN,
+                    "teammate %d", (*it)->unum());
         }
     }
 
-    dlog.addText( Logger::ACTION_CHAIN, "=====" );
+    dlog.addText(Logger::ACTION_CHAIN, "=====");
 #endif
 }
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 void
-ActionChainGraph::debug_send_chain( PlayerAgent * agent,
-                                    const std::vector< ActionStatePair > & path )
-{
+ActionChainGraph::debug_send_chain(PlayerAgent * agent,
+        const std::vector< ActionStatePair > & path) {
     const double DIRECT_PASS_DIST = 3.0;
 
-    const PredictState current_state( agent->world() );
+    const PredictState current_state(agent->world());
 
-    for ( size_t i = 0; i < path.size(); ++i )
-    {
+    for (size_t i = 0; i < path.size(); ++i) {
         std::string action_string = "?";
         std::string target_string = "";
 
@@ -613,36 +575,32 @@ ActionChainGraph::debug_send_chain( PlayerAgent * agent,
         const PredictState * s0;
         const PredictState * s1;
 
-        if ( i == 0 )
-        {
+        if (i == 0) {
             s0 = &current_state;
             s1 = &(path[0].state());
-        }
-        else
-        {
+        } else {
             s0 = &(path[i - 1].state());
             s1 = &(path[i].state());
         }
 
 
-        switch( action.category() )
-        {
-        case CooperativeAction::Hold:
+        switch (action.category()) {
+            case CooperativeAction::Hold:
             {
                 action_string = "hold";
                 break;
             }
 
-        case CooperativeAction::Dribble:
+            case CooperativeAction::Dribble:
             {
                 action_string = "dribble";
 
-                agent->debugClient().addLine( s0->ball().pos(), s1->ball().pos() );
+                agent->debugClient().addLine(s0->ball().pos(), s1->ball().pos());
                 break;
             }
 
 
-        case CooperativeAction::Pass:
+            case CooperativeAction::Pass:
             {
                 action_string = "pass";
 
@@ -650,42 +608,38 @@ ActionChainGraph::debug_send_chain( PlayerAgent * agent,
                 buf << action.targetPlayerUnum();
                 target_string = buf.str();
 
-                if ( i == 0
-                     && s0->ballHolderUnum() == agent->world().self().unum() )
-                {
-                    agent->debugClient().setTarget( action.targetPlayerUnum() );
+                if (i == 0
+                        && s0->ballHolderUnum() == agent->world().self().unum()) {
+                    agent->debugClient().setTarget(action.targetPlayerUnum());
 
-                    if ( s0->ourPlayer( action.targetPlayerUnum() )->pos().dist( s1->ball().pos() )
-                         > DIRECT_PASS_DIST )
-                    {
-                        agent->debugClient().addLine( s0->ball().pos(), s1->ball().pos() );
+                    if (s0->ourPlayer(action.targetPlayerUnum())->pos().dist(s1->ball().pos())
+                            > DIRECT_PASS_DIST) {
+                        agent->debugClient().addLine(s0->ball().pos(), s1->ball().pos());
                     }
-                }
-                else
-                {
-                    agent->debugClient().addLine( s0->ball().pos(), s1->ball().pos() );
+                } else {
+                    agent->debugClient().addLine(s0->ball().pos(), s1->ball().pos());
                 }
 
                 break;
             }
 
-        case CooperativeAction::Shoot:
+            case CooperativeAction::Shoot:
             {
                 action_string = "shoot";
 
-                agent->debugClient().addLine( s0->ball().pos(),
-                                              Vector2D( ServerParam::i().pitchHalfLength(),
-                                                        0.0 ) );
+                agent->debugClient().addLine(s0->ball().pos(),
+                        Vector2D(ServerParam::i().pitchHalfLength(),
+                        0.0));
 
                 break;
             }
 
-        case CooperativeAction::Move:
+            case CooperativeAction::Move:
             {
                 action_string = "move";
                 break;
             }
-        default:
+            default:
             {
                 action_string = "?";
 
@@ -693,133 +647,126 @@ ActionChainGraph::debug_send_chain( PlayerAgent * agent,
             }
         }
 
-        if ( action.description() )
-        {
+        if (action.description()) {
             action_string += '|';
             action_string += action.description();
-            if ( ! target_string.empty() )
-            {
+            if (!target_string.empty()) {
                 action_string += ':';
                 action_string += target_string;
             }
         }
 
-        agent->debugClient().addMessage( "%s", action_string.c_str() );
+        agent->debugClient().addMessage("%s", action_string.c_str());
 
-        dlog.addText( Logger::ACTION_CHAIN,
-                      "chain %d %s, time = %lu",
-                      i, action_string.c_str(), s1->spendTime() );
+        dlog.addText(Logger::ACTION_CHAIN,
+                "chain %d %s, time = %lu",
+                i, action_string.c_str(), s1->spendTime());
     }
 }
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 void
-ActionChainGraph::write_chain_log( const WorldModel & world,
-                                   const int count,
-                                   const std::vector< ActionStatePair > & path,
-                                   const double & eval )
-{
-    write_chain_log( "", world, count, path, eval );
+ActionChainGraph::write_chain_log(const WorldModel & world,
+        const int count,
+        const std::vector< ActionStatePair > & path,
+        const double & eval) {
+    write_chain_log("", world, count, path, eval);
 }
 
 /*-------------------------------------------------------------------*/
+
 /*!
 
  */
 void
-ActionChainGraph::write_chain_log( const std::string & pre_log_message,
-                                   const WorldModel & world,
-                                   const int count,
-                                   const std::vector< ActionStatePair > & path,
-                                   const double & eval )
-{
-    if ( ! pre_log_message.empty() )
-    {
-        dlog.addText( Logger::ACTION_CHAIN, pre_log_message.c_str() );
+ActionChainGraph::write_chain_log(const std::string & pre_log_message,
+        const WorldModel & world,
+        const int count,
+        const std::vector< ActionStatePair > & path,
+        const double & eval) {
+    if (!pre_log_message.empty()) {
+        dlog.addText(Logger::ACTION_CHAIN, pre_log_message.c_str());
     }
 
-    dlog.addText( Logger::ACTION_CHAIN,
-                  "%d: evaluation=%f",
-                  count,
-                  eval );
+    dlog.addText(Logger::ACTION_CHAIN,
+            "%d: evaluation=%f",
+            count,
+            eval);
 
-    const PredictState current_state( world );
+    const PredictState current_state(world);
 
-    for ( size_t i = 0; i < path.size(); ++i )
-    {
+    for (size_t i = 0; i < path.size(); ++i) {
         const CooperativeAction & a = path[i].action();
         const PredictState * s0;
         const PredictState * s1;
 
-        if ( i == 0 )
-        {
+        if (i == 0) {
             s0 = &current_state;
             s1 = &(path[0].state());
-        }
-        else
-        {
+        } else {
             s0 = &(path[i - 1].state());
             s1 = &(path[i].state());
         }
 
 
-        switch ( a.category() ) {
-        case CooperativeAction::Hold:
+        switch (a.category()) {
+            case CooperativeAction::Hold:
             {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "__ %d: hold (%s) t=%d",
-                              i, a.description(), s1->spendTime() );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "__ %d: hold (%s) t=%d",
+                        i, a.description(), s1->spendTime());
                 break;
             }
 
-        case CooperativeAction::Dribble:
+            case CooperativeAction::Dribble:
             {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "__ %d: dribble (%s[%d]) t=%d unum=%d target=(%.2f %.2f)",
-                              i, a.description(), a.index(), s1->spendTime(),
-                              s0->ballHolderUnum(),
-                              a.targetPoint().x, a.targetPoint().y );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "__ %d: dribble (%s[%d]) t=%d unum=%d target=(%.2f %.2f)",
+                        i, a.description(), a.index(), s1->spendTime(),
+                        s0->ballHolderUnum(),
+                        a.targetPoint().x, a.targetPoint().y);
                 break;
             }
 
-        case CooperativeAction::Pass:
+            case CooperativeAction::Pass:
             {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "__ %d: pass (%s[%d]) t=%d from[%d](%.2f %.2f)-to[%d](%.2f %.2f)",
-                              i, a.description(), a.index(), s1->spendTime(),
-                              s0->ballHolderUnum(),
-                              s0->ball().pos().x, s0->ball().pos().y,
-                              s1->ballHolderUnum(),
-                              a.targetPoint().x, a.targetPoint().y );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "__ %d: pass (%s[%d]) t=%d from[%d](%.2f %.2f)-to[%d](%.2f %.2f)",
+                        i, a.description(), a.index(), s1->spendTime(),
+                        s0->ballHolderUnum(),
+                        s0->ball().pos().x, s0->ball().pos().y,
+                        s1->ballHolderUnum(),
+                        a.targetPoint().x, a.targetPoint().y);
                 break;
             }
 
-        case CooperativeAction::Shoot:
+            case CooperativeAction::Shoot:
             {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "__ %d: shoot (%s) t=%d unum=%d",
-                              i, a.description(), s1->spendTime(),
-                              s0->ballHolderUnum() );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "__ %d: shoot (%s) t=%d unum=%d",
+                        i, a.description(), s1->spendTime(),
+                        s0->ballHolderUnum());
 
                 break;
             }
 
-        case CooperativeAction::Move:
+            case CooperativeAction::Move:
             {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "__ %d: move (%s)",
-                              i, a.description(), s1->spendTime() );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "__ %d: move (%s)",
+                        i, a.description(), s1->spendTime());
                 break;
             }
 
-        default:
+            default:
             {
-                dlog.addText( Logger::ACTION_CHAIN,
-                              "__ %d: ???? (%s)",
-                              i, a.description(), s1->spendTime() );
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "__ %d: ???? (%s)",
+                        i, a.description(), s1->spendTime());
                 break;
             }
         }

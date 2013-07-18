@@ -41,6 +41,8 @@
 
 using namespace rcsc;
 
+char ActGen_Cross::commandKey = 'C';
+
 /*-------------------------------------------------------------------*/
 
 /*!

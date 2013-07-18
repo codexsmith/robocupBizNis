@@ -31,10 +31,13 @@
 
 class ActGen_Shoot
     : public ActionGenerator {
-        
-        char* commandKey = "W";
+         private:
+   
+    
 public:
 
+    static char commandKey; 
+    
     virtual
     void generate( std::vector< ActionStatePair > * result,
                    const PredictState & state,
