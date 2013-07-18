@@ -8,6 +8,10 @@
 #ifndef GLOBAL_H
 #define	GLOBAL_H
 
+extern bool BIZNIS_DEBUG = true;
+
+extern int commandCount = 10;
+
 extern bool userCommand = true;
 extern char currentCommand = 'N';
 
