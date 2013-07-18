@@ -30,6 +30,8 @@
 
 #include "sample_coach.h"
 
+#include "global.h"
+
 #include <rcsc/coach/coach_command.h>
 #include <rcsc/coach/coach_config.h>
 #include <rcsc/coach/coach_debug_client.h>
@@ -56,7 +58,6 @@
 
 using namespace rcsc;
 
-
 struct RealSpeedMaxCmp
     : public std::binary_function< const PlayerType *,
                                    const PlayerType *,
@@ -82,9 +83,6 @@ struct RealSpeedMaxCmp
 SampleCoach::SampleCoach()
     : CoachAgent()
 {
-    
-    userCommand = false;
-    currentCommand = "N";
     //
     // register audio memory & say message parsers
     //
@@ -144,17 +142,8 @@ SampleCoach::~SampleCoach()
 
 }
 
-/*BIZNIS user command interface
-* called from action_chain_graph in calculateResultBestFirstSearch
- */
-char SampleCoach::getCommand(){
-    return currentCommand;
-}
-/*must change this flag to toggle getCommand call
- *use this to control how many players are affected?
- */
-bool SampleCoach::hasUserCommand(){
-    return userCommand;
+void SampleCoach::processInput(char *instr) {
+    currentCommand = instr[0];
 }
 
 /*-------------------------------------------------------------------*/

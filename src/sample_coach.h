@@ -37,21 +37,16 @@ namespace rcsc {
 class PlayerType;
 }
 
-
 class SampleCoach
     : public rcsc::CoachAgent {
 private:
     typedef std::vector< const rcsc::PlayerType * > PlayerTypePtrCont;
 
-
     int M_opponent_player_types[11];
 
     rcsc::TeamGraphic M_team_graphic;
     
-    //BIZNIS user command flag
-    static bool userCommand;
     
-    static char currentCommand;
     
     //mabe an array of commands?
     
@@ -62,11 +57,9 @@ public:
     virtual
     ~SampleCoach();
     
-    static bool hasUserCommand();
-    
-    static char getCommand();
-    
 protected:
+    
+    virtual void processInput(char *instr);
 
     /*!
       You can override this method.

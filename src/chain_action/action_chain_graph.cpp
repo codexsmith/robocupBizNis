@@ -26,14 +26,11 @@
 #include <config.h>
 #endif
 
-//BIZNIS COACH
-
+#include "global.h"
 
 #include "action_chain_graph.h"
 
 #include "hold_ball.h"
-
-#include "sample_coach.h"
 
 #include <rcsc/player/player_agent.h>
 #include <rcsc/common/server_param.h>
@@ -68,7 +65,7 @@ std::vector< std::pair< Vector2D, double > > ActionChainGraph::S_evaluated_point
 
 
 namespace {
-    
+
     const double HEAT_COLOR_SCALE = 128.0;
     const double HEAT_COLOR_PERIOD = 2.0 * M_PI;
 
@@ -480,9 +477,8 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
            double ev = (*M_evaluator)((*it).state(), candidate_series);
             ++(*n_evaluated);
             
-
-            if (SampleCoach::hasUserCommand()) {
-                if ((*it).action().myCommand(SampleCoach::getCommand())) {
+            if (userCommand) {
+                if ((*it).action().myCommand(currentCommand)) {
                     ev = M_best_evaluation + 1;
                 }
             }
