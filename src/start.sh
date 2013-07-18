@@ -340,11 +340,11 @@ if [ "${usecoach}" = "true" ]; then
   if  [ X"${offline_mode}" != X'' ]; then
     offline_mode="--offline_client_mode"
     if [ $unum -eq 0 ]; then
-      $coach ${coachopt} ${offline_mode} &
+      $coach ${coachopt} ${offline_mode}
     elif [ $unum -eq 12 ]; then
-      $coach ${coachopt} ${offline_mode} &
+      $coach ${coachopt} ${offline_mode}
     fi
   else
-    $coach ${coachopt} &
+    $coach ${coachopt}
   fi
 fi

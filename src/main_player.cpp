@@ -101,7 +101,7 @@ main( int argc, char **argv )
               << "*****************************************************************\n"
               << std::flush;
 
-    client.run( &agent );
+    client.run( &agent, false );
 
     return EXIT_SUCCESS;
 }
