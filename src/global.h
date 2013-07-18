@@ -11,4 +11,7 @@
 extern bool userCommand = true;
 extern char currentCommand = 'N';
 
+
+
+
 #endif	/* GLOBAL_H */

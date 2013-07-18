@@ -218,6 +218,9 @@ SamplePlayer::initImpl(CmdLineParser & cmd_parser) {
  */
 void
 SamplePlayer::actionImpl() {
+    
+//    std::cout << "SAMPLE PLAYER action";
+    
     //
     // update strategy and analyzer
     //
@@ -229,7 +232,7 @@ SamplePlayer::actionImpl() {
     //
     M_field_evaluator = createFieldEvaluator();
     M_action_generator = createActionGenerator();
-
+    
     ActionChainHolder::instance().setFieldEvaluator(M_field_evaluator);
     ActionChainHolder::instance().setActionGenerator(M_action_generator);
 

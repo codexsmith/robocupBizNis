@@ -478,8 +478,15 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
             ++(*n_evaluated);
             
             if (userCommand) {
+                std::cout << "HAS USER COMMAND";
+#ifdef ACTION_CHAIN_DEBUG
+                dlog.addText(Logger::ACTION_CHAIN,
+                        "<<<< UserCommand.");
+#endif
                 if ((*it).action().myCommand(currentCommand)) {
-                    ev = M_best_evaluation + 1;
+                    std::cout << "USER EVAL " + currentCommand;
+                    userCommand = false;
+                    ev = M_best_evaluation;
                 }
             }
             

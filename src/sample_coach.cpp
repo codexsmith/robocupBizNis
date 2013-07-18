@@ -143,6 +143,7 @@ SampleCoach::~SampleCoach()
 }
 
 void SampleCoach::processInput(char *instr) {
+    userCommand = true;
     currentCommand = instr[0];
 }
 
