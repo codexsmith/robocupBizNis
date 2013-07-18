@@ -14,3 +14,13 @@ m4/
 nbproject/
 *~
 make*
+/AUTHORS
+/COPYING
+/ChangeLog
+/INSTALL
+/NEWS
+/NEWS.en
+/README
+/aclocal.m4
+/bootstrap
+/stamp-h1

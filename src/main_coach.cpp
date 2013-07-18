@@ -84,13 +84,13 @@ main( int argc, char **argv )
     /*
       You should add your copyright message here.
      */
-     std::cout << "*****************************************************************\n"
-               << " This program is modified by BizNis\n"
-               << " Copyright 2013. Beruke Zeleke & Nicholas Smith.\n"
-               << " Georgia Institute of Technology\n"
-               << " All rights reserved.\n"
-               << "*****************************************************************\n"
-               << std::flush;
+    std::cout << "*****************************************************************\n"
+              << " This program is modified by BizNis\n"
+              << " Copyright 2013. Beruke Zeleke & Nicholas Smith.\n"
+              << " Georgia Institute of Technology\n"
+              << " All rights reserved.\n"
+              << "*****************************************************************\n"
+              << std::flush;
 
     /*
       Do NOT remove the following copyright notice!
