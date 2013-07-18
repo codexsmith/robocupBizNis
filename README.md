@@ -5,10 +5,10 @@ Extension of the Robocup Helios agent2d
 
 Command Keys
 ===========
-Cross = C
-Direct Pass = P
-Self Pass = SP
-Shoot = W
-Short Dribble = D
-Simple Dribble = SD
-Check Pass = CP
+Hold = H
+Dribble = D
+Pass = P
+Shoot = S
+Clear = C
+Move = M
+NoAction = N

@@ -8,6 +8,10 @@
 
 *.sh
 
+.deps/
+
+
+
 config*
 Make*
 m4/
