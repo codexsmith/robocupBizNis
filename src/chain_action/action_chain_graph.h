@@ -37,6 +37,8 @@
 
 #include <rcsc/geom/vector_2d.h>
 
+//#include "sample_coach.h"
+
 #include <boost/shared_ptr.hpp>
 
 #include <vector>

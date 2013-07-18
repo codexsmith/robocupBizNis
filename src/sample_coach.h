@@ -62,9 +62,7 @@ public:
     virtual
     ~SampleCoach();
     
-    static bool hasUserCommand(){
-        return userCommand;
-    }
+    static bool hasUserCommand();
     
     static char getCommand();
     

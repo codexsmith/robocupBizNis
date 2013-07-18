@@ -90,7 +90,7 @@ bool
 IntentionTurnTo::finished( const PlayerAgent * agent )
 {
     ++M_step;
-
+    
     dlog.addText( Logger::TEAM,
                   __FILE__": (finished) step=%d",
                   M_step );
@@ -337,6 +337,21 @@ Bhv_ChainAction::execute( PlayerAgent * agent )
             break;
         }
 
+        case CooperativeAction::Ball:
+        {
+            dlog.addText( Logger::TEAM,
+                          __FILE__" (Bhv_ChainAction) BizNis Ball" );
+
+            if ( Body_GoToPoint( wm.ball().pos(),
+                                 1.0,
+                                 SP.maxDashPower() ).execute( agent ) )
+            {
+                agent->setNeckAction( new Neck_ScanField() );
+                return true;
+            }
+            break;
+        }
+    
     default:
         dlog.addText( Logger::TEAM,
                       __FILE__" (Bhv_ChainAction) invalid category" );

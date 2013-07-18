@@ -59,7 +59,7 @@ public:
         Shoot,
         Clear,
         Move,
-
+        Ball,//BIZNIS behavior
         NoAction,
     };
     

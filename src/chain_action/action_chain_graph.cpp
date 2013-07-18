@@ -27,11 +27,13 @@
 #endif
 
 //BIZNIS COACH
-#include "sample_coach.h"
+
 
 #include "action_chain_graph.h"
 
 #include "hold_ball.h"
+
+#include "sample_coach.h"
 
 #include <rcsc/player/player_agent.h>
 #include <rcsc/common/server_param.h>
@@ -66,7 +68,7 @@ std::vector< std::pair< Vector2D, double > > ActionChainGraph::S_evaluated_point
 
 
 namespace {
-
+    
     const double HEAT_COLOR_SCALE = 128.0;
     const double HEAT_COLOR_PERIOD = 2.0 * M_PI;
 

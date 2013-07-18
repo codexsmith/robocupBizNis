@@ -112,6 +112,12 @@ CooperativeAction::myCommand(const char key) const{
             return true;
         }
     }
+    else if(key == 'B'){
+        if(M_category == Ball){
+            return true;
+        }
+    }
+    
     return false;
 }
 

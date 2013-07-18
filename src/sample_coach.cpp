@@ -150,6 +150,12 @@ SampleCoach::~SampleCoach()
 char SampleCoach::getCommand(){
     return currentCommand;
 }
+/*must change this flag to toggle getCommand call
+ *use this to control how many players are affected?
+ */
+bool SampleCoach::hasUserCommand(){
+    return userCommand;
+}
 
 /*-------------------------------------------------------------------*/
 /*!
