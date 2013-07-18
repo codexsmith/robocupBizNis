@@ -1,0 +1,14 @@
+# Compiled source #
+###################
+*.com
+*.dll
+*.exe
+*.o
+*.so
+
+*.sh
+
+config*
+Make*
+m4/
+nbproject/
