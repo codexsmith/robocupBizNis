@@ -498,7 +498,7 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
                         commandCount = 10;
                     }
                     
-                    ev = M_best_evaluation;
+                    ev = INT_MAX;
                 }
             }
             
