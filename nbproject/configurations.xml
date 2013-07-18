@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="89">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="agent2d-3.1.1">
+      <df name="src">
+        <df name="chain_action">
+          <in>actgen_action_chain_length_filter.h</in>
+          <in>actgen_cross.cpp</in>
+          <in>actgen_cross.h</in>
+          <in>actgen_direct_pass.cpp</in>
+          <in>actgen_direct_pass.h</in>
+          <in>actgen_self_pass.cpp</in>
+          <in>actgen_self_pass.h</in>
+          <in>actgen_shoot.cpp</in>
+          <in>actgen_shoot.h</in>
+          <in>actgen_short_dribble.cpp</in>
+          <in>actgen_short_dribble.h</in>
+          <in>actgen_simple_dribble.cpp</in>
+          <in>actgen_simple_dribble.h</in>
+          <in>actgen_strict_check_pass.cpp</in>
+          <in>actgen_strict_check_pass.h</in>
+          <in>action_chain_graph.cpp</in>
+          <in>action_chain_graph.h</in>
+          <in>action_chain_holder.cpp</in>
+          <in>action_chain_holder.h</in>
+          <in>action_generator.h</in>
+          <in>action_state_pair.h</in>
+          <in>bhv_chain_action.cpp</in>
+          <in>bhv_chain_action.h</in>
+          <in>bhv_normal_dribble.cpp</in>
+          <in>bhv_normal_dribble.h</in>
+          <in>bhv_pass_kick_find_receiver.cpp</in>
+          <in>bhv_pass_kick_find_receiver.h</in>
+          <in>bhv_strict_check_shoot.cpp</in>
+          <in>bhv_strict_check_shoot.h</in>
+          <in>body_force_shoot.cpp</in>
+          <in>body_force_shoot.h</in>
+          <in>clear_ball.cpp</in>
+          <in>clear_ball.h</in>
+          <in>clear_generator.cpp</in>
+          <in>clear_generator.h</in>
+          <in>cooperative_action.cpp</in>
+          <in>cooperative_action.h</in>
+          <in>cross_generator.cpp</in>
+          <in>cross_generator.h</in>
+          <in>dribble.cpp</in>
+          <in>dribble.h</in>
+          <in>field_analyzer.cpp</in>
+          <in>field_analyzer.h</in>
+          <in>field_evaluator.h</in>
+          <in>hold_ball.cpp</in>
+          <in>hold_ball.h</in>
+          <in>neck_turn_to_receiver.cpp</in>
+          <in>neck_turn_to_receiver.h</in>
+          <in>pass.cpp</in>
+          <in>pass.h</in>
+          <in>pass_checker.h</in>
+          <in>predict_ball_object.h</in>
+          <in>predict_player_object.h</in>
+          <in>predict_state.cpp</in>
+          <in>predict_state.h</in>
+          <in>self_pass_generator.cpp</in>
+          <in>self_pass_generator.h</in>
+          <in>shoot.cpp</in>
+          <in>shoot.h</in>
+          <in>shoot_generator.cpp</in>
+          <in>shoot_generator.h</in>
+          <in>short_dribble_generator.cpp</in>
+          <in>short_dribble_generator.h</in>
+          <in>simple_pass_checker.cpp</in>
+          <in>simple_pass_checker.h</in>
+          <in>strict_check_pass_generator.cpp</in>
+          <in>strict_check_pass_generator.h</in>
+          <in>tackle_generator.cpp</in>
+          <in>tackle_generator.h</in>
+        </df>
+        <in>bhv_basic_move.cpp</in>
+        <in>bhv_basic_move.h</in>
+        <in>bhv_basic_offensive_kick.cpp</in>
+        <in>bhv_basic_offensive_kick.h</in>
+        <in>bhv_basic_tackle.cpp</in>
+        <in>bhv_basic_tackle.h</in>
+        <in>bhv_custom_before_kick_off.cpp</in>
+        <in>bhv_custom_before_kick_off.h</in>
+        <in>bhv_go_to_static_ball.cpp</in>
+        <in>bhv_go_to_static_ball.h</in>
+        <in>bhv_goalie_basic_move.cpp</in>
+        <in>bhv_goalie_basic_move.h</in>
+        <in>bhv_goalie_chase_ball.cpp</in>
+        <in>bhv_goalie_chase_ball.h</in>
+        <in>bhv_goalie_free_kick.cpp</in>
+        <in>bhv_goalie_free_kick.h</in>
+        <in>bhv_penalty_kick.cpp</in>
+        <in>bhv_penalty_kick.h</in>
+        <in>bhv_prepare_set_play_kick.cpp</in>
+        <in>bhv_prepare_set_play_kick.h</in>
+        <in>bhv_set_play.cpp</in>
+        <in>bhv_set_play.h</in>
+        <in>bhv_set_play_free_kick.cpp</in>
+        <in>bhv_set_play_free_kick.h</in>
+        <in>bhv_set_play_goal_kick.cpp</in>
+        <in>bhv_set_play_goal_kick.h</in>
+        <in>bhv_set_play_indirect_free_kick.cpp</in>
+        <in>bhv_set_play_indirect_free_kick.h</in>
+        <in>bhv_set_play_kick_in.cpp</in>
+        <in>bhv_set_play_kick_in.h</in>
+        <in>bhv_set_play_kick_off.cpp</in>
+        <in>bhv_set_play_kick_off.h</in>
+        <in>bhv_their_goal_kick_move.cpp</in>
+        <in>bhv_their_goal_kick_move.h</in>
+        <in>communication.h</in>
+        <in>intention_receive.cpp</in>
+        <in>intention_receive.h</in>
+        <in>intention_wait_after_set_play_kick.cpp</in>
+        <in>intention_wait_after_set_play_kick.h</in>
+        <in>keepaway_communication.cpp</in>
+        <in>keepaway_communication.h</in>
+        <in>main_coach.cpp</in>
+        <in>main_player.cpp</in>
+        <in>main_trainer.cpp</in>
+        <in>neck_default_intercept_neck.cpp</in>
+        <in>neck_default_intercept_neck.h</in>
+        <in>neck_goalie_turn_neck.cpp</in>
+        <in>neck_goalie_turn_neck.h</in>
+        <in>neck_offensive_intercept_neck.cpp</in>
+        <in>neck_offensive_intercept_neck.h</in>
+        <in>role_center_back.cpp</in>
+        <in>role_center_back.h</in>
+        <in>role_center_forward.cpp</in>
+        <in>role_center_forward.h</in>
+        <in>role_defensive_half.cpp</in>
+        <in>role_defensive_half.h</in>
+        <in>role_goalie.cpp</in>
+        <in>role_goalie.h</in>
+        <in>role_keepaway_keeper.cpp</in>
+        <in>role_keepaway_keeper.h</in>
+        <in>role_keepaway_taker.cpp</in>
+        <in>role_keepaway_taker.h</in>
+        <in>role_offensive_half.cpp</in>
+        <in>role_offensive_half.h</in>
+        <in>role_sample.cpp</in>
+        <in>role_sample.h</in>
+        <in>role_side_back.cpp</in>
+        <in>role_side_back.h</in>
+        <in>role_side_forward.cpp</in>
+        <in>role_side_forward.h</in>
+        <in>role_side_half.cpp</in>
+        <in>role_side_half.h</in>
+        <in>sample_coach.cpp</in>
+        <in>sample_coach.h</in>
+        <in>sample_communication.cpp</in>
+        <in>sample_communication.h</in>
+        <in>sample_field_evaluator.cpp</in>
+        <in>sample_field_evaluator.h</in>
+        <in>sample_player.cpp</in>
+        <in>sample_player.h</in>
+        <in>sample_trainer.cpp</in>
+        <in>sample_trainer.h</in>
+        <in>soccer_role.cpp</in>
+        <in>soccer_role.h</in>
+        <in>strategy.cpp</in>
+        <in>strategy.h</in>
+        <in>team_logo.xpm</in>
+        <in>view_tactical.cpp</in>
+        <in>view_tactical.h</in>
+      </df>
+      <in>config.h</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>configure</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>src</pElem>
+              <pElem>.</pElem>
+              <pElem>src/chain_action</pElem>
+              <pElem>/usr/include</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>HAVE_CONFIG_H</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="config.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_basic_move.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_basic_move.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_basic_offensive_kick.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_basic_offensive_kick.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_basic_tackle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_basic_tackle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_custom_before_kick_off.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_custom_before_kick_off.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_go_to_static_ball.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_go_to_static_ball.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_goalie_basic_move.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_goalie_basic_move.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_goalie_chase_ball.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_goalie_chase_ball.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_goalie_free_kick.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_goalie_free_kick.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_penalty_kick.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_penalty_kick.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_prepare_set_play_kick.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_prepare_set_play_kick.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_free_kick.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_free_kick.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_goal_kick.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_goal_kick.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_indirect_free_kick.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_indirect_free_kick.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_kick_in.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_kick_in.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_kick_off.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_set_play_kick_off.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/bhv_their_goal_kick_move.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/bhv_their_goal_kick_move.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_action_chain_length_filter.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_cross.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_cross.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_direct_pass.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_direct_pass.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_self_pass.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_self_pass.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_shoot.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_shoot.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_short_dribble.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_short_dribble.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_simple_dribble.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_simple_dribble.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_strict_check_pass.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/actgen_strict_check_pass.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/action_chain_graph.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/action_chain_graph.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/action_chain_holder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/action_chain_holder.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/action_generator.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/action_state_pair.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_chain_action.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_chain_action.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_normal_dribble.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_normal_dribble.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_pass_kick_find_receiver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_pass_kick_find_receiver.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_strict_check_shoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/bhv_strict_check_shoot.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/body_force_shoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/body_force_shoot.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/clear_ball.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/clear_ball.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/clear_generator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/clear_generator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/cooperative_action.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/cooperative_action.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/cross_generator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/cross_generator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/dribble.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/dribble.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/field_analyzer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/field_analyzer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/field_evaluator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/hold_ball.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/hold_ball.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/neck_turn_to_receiver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/neck_turn_to_receiver.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/pass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/pass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/pass_checker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/predict_ball_object.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/predict_player_object.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/predict_state.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/predict_state.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/self_pass_generator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/self_pass_generator.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/shoot.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/chain_action/shoot.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/shoot_generator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/shoot_generator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/chain_action/short_dribble_generator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/short_dribble_generator.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/simple_pass_checker.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/simple_pass_checker.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/strict_check_pass_generator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/strict_check_pass_generator.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/tackle_generator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/chain_action/tackle_generator.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/communication.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/intention_receive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/intention_receive.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/intention_wait_after_set_play_kick.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/intention_wait_after_set_play_kick.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/keepaway_communication.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/keepaway_communication.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/main_coach.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/main_player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/main_trainer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/neck_default_intercept_neck.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/neck_default_intercept_neck.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/neck_goalie_turn_neck.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/neck_goalie_turn_neck.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/neck_offensive_intercept_neck.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/neck_offensive_intercept_neck.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/role_center_back.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_center_back.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_center_forward.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_center_forward.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_defensive_half.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_defensive_half.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_goalie.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_goalie.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_keepaway_keeper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_keepaway_keeper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_keepaway_taker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_keepaway_taker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_offensive_half.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_offensive_half.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_sample.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_sample.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_side_back.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_side_back.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_side_forward.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_side_forward.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/role_side_half.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/role_side_half.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/sample_coach.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/sample_coach.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/sample_communication.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/sample_communication.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/sample_field_evaluator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/sample_field_evaluator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/sample_player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/sample_player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/sample_trainer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/sample_trainer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/soccer_role.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/soccer_role.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/strategy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/strategy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/team_logo.xpm" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view_tactical.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/view_tactical.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
