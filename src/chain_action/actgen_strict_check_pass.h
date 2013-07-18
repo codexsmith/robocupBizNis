@@ -31,7 +31,7 @@
 
 class ActGen_StrictCheckPass
     : public ActionGenerator {
-
+char* commandKey = "CP";
 public:
     virtual
     void generate( std::vector< ActionStatePair > * result,

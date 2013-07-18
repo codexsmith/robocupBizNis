@@ -84,7 +84,7 @@ SampleCoach::SampleCoach()
 {
     
     userCommand = false;
-    currentCommand = 'a';
+    currentCommand = "a";
     //
     // register audio memory & say message parsers
     //

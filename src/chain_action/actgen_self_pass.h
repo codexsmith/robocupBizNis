@@ -31,7 +31,8 @@
 
 class ActGen_SelfPass
     : public ActionGenerator {
-
+        
+        char* commandKey = "SP";
 public:
     virtual
     void generate( std::vector< ActionStatePair > * result,

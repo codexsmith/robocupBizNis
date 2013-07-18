@@ -33,7 +33,8 @@
 
 class ActGen_DirectPass
     : public ActionGenerator {
-
+        
+        char* commandKey = "P";
 public:
     ActGen_DirectPass();
 

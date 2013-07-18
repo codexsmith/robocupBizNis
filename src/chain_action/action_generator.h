@@ -3,7 +3,7 @@
 /*!
   \file action_generator.h
   \brief abstract action generator Header File
-*/
+ */
 
 /*
  *Copyright:
@@ -39,33 +39,37 @@
 class ActionStatePair;
 class PredictState;
 namespace rcsc {
-class WorldModel;
+    class WorldModel;
 }
 
 /*!
   \class ActionGenerator
   \brief an abstract class to generate chain of action-state pair
-*/
+ */
 class ActionGenerator {
 public:
 
     typedef boost::shared_ptr< ActionGenerator > Ptr;
     typedef boost::shared_ptr< const ActionGenerator > ConstPtr;
-
+    
+    char* commandKey = "0";
+    
 private:
 
     // not used
-    ActionGenerator( const ActionGenerator & );
-    ActionGenerator & operator=( const ActionGenerator & );
-
+    ActionGenerator(const ActionGenerator &);
+    ActionGenerator & operator=(const ActionGenerator &);
+    
+    
+    
 public:
 
-    ActionGenerator()
-      { }
+    ActionGenerator() {
+    }
 
     virtual
-    ~ActionGenerator()
-      { }
+    ~ActionGenerator() {
+    }
 
     /*!
       \brief genarate chain of action-state pair
@@ -75,49 +79,40 @@ public:
       \param path chain of action-state pair from the initial state to the last state
      */
     virtual
-    void generate( std::vector< ActionStatePair > * result,
-                   const PredictState & state,
-                   const rcsc::WorldModel & wm,
-                   const std::vector< ActionStatePair > & path ) const = 0;
+    void generate(std::vector< ActionStatePair > * result,
+            const PredictState & state,
+            const rcsc::WorldModel & wm,
+            const std::vector< ActionStatePair > & path) const = 0;
 };
-
-
-
 
 /*!
   \class CompositeActionGenerator
   \brief composite pattern structor for ActionGenerator class
  */
 class CompositeActionGenerator
-    : public ActionGenerator {
+: public ActionGenerator {
 private:
     //! generator container
     std::vector< ConstPtr > M_generators;
 
 public:
 
+    void addGenerator(const ActionGenerator * g) {
+        if (g) {
+            M_generators.push_back(ConstPtr(g));
+        }
+    }
 
-    void addGenerator( const ActionGenerator * g )
-      {
-          if ( g )
-          {
-              M_generators.push_back( ConstPtr( g ) );
-          }
-      }
-
-
-    void generate( std::vector< ActionStatePair > * result,
-                   const PredictState & state,
-                   const rcsc::WorldModel & wm,
-                   const std::vector< ActionStatePair > & path ) const
-      {
-          for ( std::vector< ConstPtr >::const_iterator g = M_generators.begin();
+    void generate(std::vector< ActionStatePair > * result,
+            const PredictState & state,
+            const rcsc::WorldModel & wm,
+            const std::vector< ActionStatePair > & path) const {
+        for (std::vector< ConstPtr >::const_iterator g = M_generators.begin();
                 g != M_generators.end();
-                ++g )
-          {
-              (*g)->generate( result, state, wm, path );
-          }
-      }
+                ++g) {
+            (*g)->generate(result, state, wm, path);
+        }
+    }
 };
 
 #endif

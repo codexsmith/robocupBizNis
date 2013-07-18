@@ -36,7 +36,7 @@ class Vector2D;
 
 class ActGen_SimpleDribble
     : public ActionGenerator {
-
+    char* commandKey = "SD";
 public:
     virtual
     void generate( std::vector< ActionStatePair > * result,

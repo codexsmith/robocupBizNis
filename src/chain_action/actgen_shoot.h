@@ -31,7 +31,8 @@
 
 class ActGen_Shoot
     : public ActionGenerator {
-
+        
+        char* commandKey = "W";
 public:
 
     virtual

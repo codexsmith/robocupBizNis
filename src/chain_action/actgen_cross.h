@@ -32,6 +32,8 @@
 class ActGen_Cross
     : public ActionGenerator {
 
+    char* commandKey = "C";    
+        
 public:
     virtual
     void generate( std::vector< ActionStatePair > * result,
