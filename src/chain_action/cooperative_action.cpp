@@ -37,7 +37,7 @@
 
 using namespace rcsc;
 
-bool CooperativeAction::BIZNIS_COOP_DEBUG = true;
+//bool CooperativeAction::BIZNIS_COOP_DEBUG = true;
 
 /*-------------------------------------------------------------------*/
 /*!
@@ -81,9 +81,9 @@ CooperativeAction::setCategory( const ActionCategory & category )
 
 const bool
 CooperativeAction::myCommand(const char key) const{
-    if(BIZNIS_COOP_DEBUG){
-        std::cout << "coop action myCommand";
-    }
+//    if(BIZNIS_COOP_DEBUG){
+//        std::cout << "coop action myCommand";
+//    }
     
     if(key == 'H'){
         if(M_category == Hold){

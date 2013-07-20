@@ -58,8 +58,6 @@ public:
     ~SampleCoach();
     
 protected:
-    
-    virtual void processInput(char *instr);
 
     /*!
       You can override this method.

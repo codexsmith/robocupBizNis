@@ -100,11 +100,8 @@ main( int argc, char **argv )
               << " All rights reserved.\n"
               << "*****************************************************************\n"
               << std::flush;
-
     
-    
-//    client.run( &agent );
-    client.run( &agent, false );
+    client.run( &agent );
 
     return EXIT_SUCCESS;
 }

@@ -26,11 +26,11 @@
 #include <config.h>
 #endif
 
-
-#include "global.h"
-
-
 #include "action_chain_graph.h"
+
+#include <cfloat>
+
+#include "shared.h"
 
 #include "hold_ball.h"
 
@@ -479,21 +479,15 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
            double ev = (*M_evaluator)((*it).state(), candidate_series);
             ++(*n_evaluated);
             
-            if (userCommand) {
-                if(BIZNIS_DEBUG){
-                std::cout << "HAS USER COMMAND";
-                }
 #ifdef ACTION_CHAIN_DEBUG
                 dlog.addText(Logger::ACTION_CHAIN,
                         "<<<< UserCommand.");
 #endif
-                if ((*it).action().myCommand(currentCommand)) {
-                    if(BIZNIS_DEBUG){
-                        std::cout << "USER EVAL " << currentCommand;
-                    }
-                    
-                    ev = INT_MAX;
-                }
+                
+            std::cout << wm.self().unum() << ":" << Shared::getCommand() << std::endl;
+            if ((*it).action().myCommand(* Shared::getCommand())) {
+                ev = DBL_MAX;
+
             }
             
 #ifdef ACTION_CHAIN_DEBUG
