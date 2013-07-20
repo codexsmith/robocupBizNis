@@ -30,8 +30,11 @@
 
 #include "sample_coach.h"
 
+#include "shared.h"
+
 #include <rcsc/common/basic_client.h>
 
+#include <pthread.h>
 #include <iostream>
 #include <cstdlib> // exit
 #include <cerrno> // errno
@@ -52,6 +55,19 @@ sigExitHandle( int )
 }
 
 };
+
+void * commandInput(void *null)
+{
+    std::string input;
+    for(;;)
+    {
+        printf("%s", "\n>");
+        getline(std::cin, input);
+        Shared::setCommand(input[0]);
+    }
+    
+    return 0;
+}
 
 
 /*-------------------------------------------------------------------*/
@@ -101,8 +117,12 @@ main( int argc, char **argv )
               << " All rights reserved.\n"
               << "*****************************************************************\n"
               << std::flush;
-
-    client.run( &agent, true );
+    
+    pthread_t ioThread;
+    pthread_create(&ioThread, NULL, commandInput, &agent);
+    pthread_join(ioThread, NULL);
+    
+    client.run( &agent);
 
     return EXIT_SUCCESS;
 }

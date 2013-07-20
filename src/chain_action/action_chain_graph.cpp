@@ -26,9 +26,9 @@
 #include <config.h>
 #endif
 
-#include "global.h"
-
 #include "action_chain_graph.h"
+
+#include "shared.h"
 
 #include "hold_ball.h"
 
@@ -477,29 +477,13 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
            double ev = (*M_evaluator)((*it).state(), candidate_series);
             ++(*n_evaluated);
             
-            if (userCommand) {
-                if(BIZNIS_DEBUG){
-                std::cout << "HAS USER COMMAND";
-                }
 #ifdef ACTION_CHAIN_DEBUG
                 dlog.addText(Logger::ACTION_CHAIN,
                         "<<<< UserCommand.");
 #endif
-                if ((*it).action().myCommand(currentCommand)) {
-                    if(BIZNIS_DEBUG){
-                        std::cout << "USER EVAL " << currentCommand;
-                    }
-                    
-                    if(commandCount > 0){
-                        commandCount--;
-                    }
-                    else{
-                        userCommand = false;
-                        commandCount = 10;
-                    }
-                    
-                    ev = INT_MAX;
-                }
+            std::cout << wm.self().unum() << ":" << Shared::getCommand() << std::endl;
+            if ((*it).action().myCommand(* Shared::getCommand())) {
+                ev = M_best_evaluation;
             }
             
 #ifdef ACTION_CHAIN_DEBUG

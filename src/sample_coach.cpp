@@ -30,8 +30,6 @@
 
 #include "sample_coach.h"
 
-#include "global.h"
-
 #include <rcsc/coach/coach_command.h>
 #include <rcsc/coach/coach_config.h>
 #include <rcsc/coach/coach_debug_client.h>
@@ -140,11 +138,6 @@ SampleCoach::SampleCoach()
 SampleCoach::~SampleCoach()
 {
 
-}
-
-void SampleCoach::processInput(char *instr) {
-    userCommand = true;
-    currentCommand = instr[0];
 }
 
 /*-------------------------------------------------------------------*/
