@@ -26,7 +26,9 @@
 #include <config.h>
 #endif
 
+
 #include "global.h"
+
 
 #include "action_chain_graph.h"
 
@@ -488,14 +490,6 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
                 if ((*it).action().myCommand(currentCommand)) {
                     if(BIZNIS_DEBUG){
                         std::cout << "USER EVAL " << currentCommand;
-                    }
-                    
-                    if(commandCount > 0){
-                        commandCount--;
-                    }
-                    else{
-                        userCommand = false;
-                        commandCount = 10;
                     }
                     
                     ev = INT_MAX;

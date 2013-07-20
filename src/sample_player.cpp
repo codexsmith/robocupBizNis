@@ -28,6 +28,8 @@
 #include <config.h>
 #endif
 
+
+
 #include "sample_player.h"
 
 #include "strategy.h"
@@ -249,7 +251,15 @@ SamplePlayer::actionImpl() {
     // update action chain
     //
     ActionChainHolder::instance().update(world());
-
+    
+    
+//    if(GLOBAL_H::userCommand && GLOBAL_H::commandCount > 0) {
+//        GLOBAL_H::commandCount--;
+//    } else {
+//        GLOBAL_H::userCommand = false;
+//        GLOBAL_H::commandCount = 10;
+//    }
+//    
 
     //
     // create current role

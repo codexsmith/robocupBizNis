@@ -15,7 +15,4 @@ extern int commandCount = 10;
 extern bool userCommand = false;
 extern char currentCommand = 'N';
 
-
-
-
 #endif	/* GLOBAL_H */
