@@ -464,6 +464,14 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
                     candidates.size());
 #endif
         }
+        
+//        if (!series.empty() && !candidates.empty())
+//        {
+//            printf("#%*d | %*s candidate size=%d\n",
+//                    2,  wm.self().unum(),
+//                    15, series.rbegin()->action().description(),
+//                    candidates.size());
+//        }
 
 
         //
@@ -483,12 +491,14 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
                 dlog.addText(Logger::ACTION_CHAIN,
                         "<<<< UserCommand.");
 #endif
-                
-            std::cout << wm.self().unum() << ":" << Shared::getCommand() << std::endl;
-            if ((*it).action().myCommand(* Shared::getCommand())) {
-                ev = DBL_MAX;
 
-            }
+            std:: cout << it->M_action->description() << std::endl;
+//            std::cout << wm.self().unum() << ":";
+//            if ((*it).action().myCommand(*Shared::getCommand())) {
+//                ev = DBL_MAX;
+//                std::cout << Shared::getCommand();
+//            }
+//             std::cout << std::endl;
             
 #ifdef ACTION_CHAIN_DEBUG
             write_chain_log(wm, M_chain_count, candidate_series, ev);

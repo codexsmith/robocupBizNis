@@ -16,14 +16,13 @@ using namespace boost::interprocess;
 class Shared
 {
 public:
-    static void setCommand(const char command)
+    static inline void setCommand(const char command)
     {
-        void *a = getInstance().region.get_address();
-        char *c = static_cast<char *>(a);
+        char *c = static_cast<char *>(getInstance().region.get_address());
         *c = command;
     }
     
-    static char * getCommand()
+    static inline char * getCommand()
     {
         return static_cast<char *>(getInstance().region.get_address());
     }
@@ -31,21 +30,21 @@ public:
 private:
     mapped_region region;
         
-    Shared()
+    inline Shared()
     {
         shared_memory_object shared(open_or_create, "shared", read_write);
         shared.truncate(1024);
         region = mapped_region(shared, read_write);
     };
     
-    static Shared& getInstance()
+    static inline Shared& getInstance()
     {
         static Shared instance;
         return instance;
     }
     
-    Shared(Shared const&);
-    void operator=(Shared const&);
+    inline Shared(Shared const&);
+    void inline operator=(Shared const&);
 };
 
 #endif	/* SHARED_H */
