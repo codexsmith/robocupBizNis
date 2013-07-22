@@ -39,8 +39,6 @@
 
 using namespace rcsc;
 
-
-char ActGen_ShortDribble::commandKey = 'D';
 /*-------------------------------------------------------------------*/
 /*!
 
@@ -51,6 +49,11 @@ ActGen_ShortDribble::generate( std::vector< ActionStatePair > * result,
                                const WorldModel & wm,
                                const std::vector< ActionStatePair > & path ) const
 {
+    if (std::string("HPD").find(*Shared::getCommand()) == std::string::npos)
+    {
+        return;
+    }
+    
     // generate only first actions
     if ( ! path.empty() )
     {

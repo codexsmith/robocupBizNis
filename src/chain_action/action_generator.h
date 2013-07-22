@@ -34,6 +34,8 @@
 
 #include <boost/shared_ptr.hpp>
 
+#include "shared.h"
+
 #include <vector>
 
 class ActionStatePair;
@@ -63,8 +65,6 @@ private:
     
 public:
 
-    static char commandKey;
-    
     ActionGenerator() {
     }
 
@@ -111,7 +111,10 @@ public:
         for (std::vector< ConstPtr >::const_iterator g = M_generators.begin();
                 g != M_generators.end();
                 ++g) {
-            (*g)->generate(result, state, wm, path);
+            if (*Shared::getCommand() != 'N')
+            {
+                (*g)->generate(result, state, wm, path);
+            }
         }
     }
 };

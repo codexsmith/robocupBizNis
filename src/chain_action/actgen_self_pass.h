@@ -36,8 +36,6 @@ class ActGen_SelfPass
           
 public:
     
-      static char commandKey;
-    
     virtual
     void generate( std::vector< ActionStatePair > * result,
                    const PredictState & state,

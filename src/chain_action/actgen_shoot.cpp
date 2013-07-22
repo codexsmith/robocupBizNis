@@ -43,8 +43,6 @@ using namespace rcsc;
 
 static const int VALID_PLAYER_THRESHOLD = 10;
 
-char ActGen_Shoot::commandKey = 'W';
-
 /*-------------------------------------------------------------------*/
 /*!
 
@@ -55,6 +53,11 @@ ActGen_Shoot::generate( std::vector< ActionStatePair > * result,
                         const WorldModel & wm,
                         const std::vector< ActionStatePair > & ) const
 {
+    if (std::string("HPD").find(*Shared::getCommand()) == std::string::npos)
+    {
+        return;
+    }
+    
     const AbstractPlayerObject * holder = state.ballHolder();
 
     if ( holder->posCount() > VALID_PLAYER_THRESHOLD

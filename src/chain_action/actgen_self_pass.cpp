@@ -38,8 +38,6 @@
 
 using namespace rcsc;
 
-char ActGen_SelfPass::commandKey = 'SP';
-
 /*-------------------------------------------------------------------*/
 /*!
 
@@ -50,6 +48,11 @@ ActGen_SelfPass::generate( std::vector< ActionStatePair > * result,
                            const WorldModel & wm,
                            const std::vector< ActionStatePair > & path ) const
 {
+    if (std::string("PD").find(*Shared::getCommand()) == std::string::npos)
+    {
+        return;
+    }
+    
     // generate only first actions
     if ( ! path.empty() )
     {

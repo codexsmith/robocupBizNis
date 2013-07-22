@@ -46,8 +46,6 @@
 
 using namespace rcsc;
 
-char ActGen_SimpleDribble::commandKey = 'SD';
-
 /*-------------------------------------------------------------------*/
 /*!
 
@@ -58,6 +56,11 @@ ActGen_SimpleDribble::generate( std::vector< ActionStatePair > * result,
                                 const WorldModel & current_wm,
                                 const std::vector< ActionStatePair > & path ) const
 {
+    if (std::string("HPD").find(*Shared::getCommand()) == std::string::npos)
+    {
+        return;
+    }
+    
     static GameTime s_last_call_time( 0, 0 );
     static int s_action_count = 0;
 
