@@ -491,14 +491,17 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
                 dlog.addText(Logger::ACTION_CHAIN,
                         "<<<< UserCommand.");
 #endif
-
-            std:: cout << it->M_action->description() << std::endl;
+//BIZNIS
+//            std:: cout << it->M_action->description() << std::endl;
 //            std::cout << wm.self().unum() << ":";
-//            if ((*it).action().myCommand(*Shared::getCommand())) {
-//                ev = DBL_MAX;
-//                std::cout << Shared::getCommand();
-//            }
-//             std::cout << std::endl;
+                std::cout <<"My command was "<< Shared::getCommand();
+            if ((*it).action().myCommand(*Shared::getCommand())) {
+                
+                ev = DBL_MAX;
+                
+                std::cout <<"I followed  "<< Shared::getCommand();
+            }
+             std::cout << std::endl;
             
 #ifdef ACTION_CHAIN_DEBUG
             write_chain_log(wm, M_chain_count, candidate_series, ev);
