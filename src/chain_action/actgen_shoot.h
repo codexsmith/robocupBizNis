@@ -35,8 +35,6 @@ class ActGen_Shoot
    
     
 public:
-
-    static char commandKey; 
     
     virtual
     void generate( std::vector< ActionStatePair > * result,

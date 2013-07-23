@@ -85,8 +85,6 @@ s_get_ball_speed_for_pass( const double & distance )
 
 }
 
-char ActGen_DirectPass::commandKey = 'P';
-
 /*-------------------------------------------------------------------*/
 /*!
 
@@ -115,6 +113,11 @@ ActGen_DirectPass::generate( std::vector< ActionStatePair > * result,
                              const WorldModel & current_wm,
                              const std::vector< ActionStatePair > & path ) const
 {
+    if (std::string("HP").find(*Shared::getCommand()) == std::string::npos)
+    {
+        return;
+    }
+    
     static const int VALID_PLAYER_THRESHOLD = 10;
     static GameTime s_last_call_time( 0, 0 );
     static int s_action_count = 0;

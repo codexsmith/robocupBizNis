@@ -35,8 +35,6 @@ class ActGen_StrictCheckPass
 
 public:
     
-    static char commandKey;
-    
     virtual
     void generate( std::vector< ActionStatePair > * result,
                    const PredictState & state,

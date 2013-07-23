@@ -37,8 +37,6 @@ class ActGen_DirectPass
            
 public:
     
-     static char commandKey;
-    
     ActGen_DirectPass();
 
     virtual

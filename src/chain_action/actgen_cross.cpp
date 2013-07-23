@@ -41,8 +41,6 @@
 
 using namespace rcsc;
 
-char ActGen_Cross::commandKey = 'C';
-
 /*-------------------------------------------------------------------*/
 
 /*!
@@ -52,7 +50,13 @@ void
 ActGen_Cross::generate(std::vector< ActionStatePair > * result,
         const PredictState & state,
         const WorldModel & wm,
-        const std::vector< ActionStatePair > & path) const {
+        const std::vector< ActionStatePair > & path) const
+{
+    if (std::string("P").find(*Shared::getCommand()) == std::string::npos)
+    {
+        return;
+    }
+    
     // generate only first actions
     if (!path.empty()) {
         return;
