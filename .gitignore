@@ -10,14 +10,16 @@
 *.sh
 
 .deps/
+src/Make*
 
-
-
+.directory
 config*
-Make*
+*Make*
+*make
 m4/
 nbproject/
 *~
+NEWS
 make*
 /AUTHORS
 /COPYING

@@ -751,6 +751,12 @@ Strategy::getPositionType( const int unum ) const
     }
 }
 
+void
+Strategy::setTargetPosition(const int unum, Vector2D newPos){
+  M_positions[unum - 1] = newPos;
+}
+
+
 /*-------------------------------------------------------------------*/
 /*!
 

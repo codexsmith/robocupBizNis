@@ -30,7 +30,7 @@
 
 #include "shared.h"
 
-#include "bhv_basic_move.h"
+#include "bhv_defensive_move.h"
 
 #include "strategy.h"
 
@@ -58,7 +58,7 @@ using namespace rcsc;
 
  */
 bool
-Bhv_BasicMove::execute( PlayerAgent * agent )
+Bhv_DefensiveMove::execute( PlayerAgent * agent )
 {
     dlog.addText( Logger::TEAM,
                   __FILE__": Bhv_BasicMove" );
@@ -94,6 +94,33 @@ Bhv_BasicMove::execute( PlayerAgent * agent )
 
     const Vector2D target_point = Strategy::i().getPosition( wm.self().unum() );
     
+    //BIZNIS
+        PlayerObject on_ball = wm.getTeammateNearestToBall();
+	
+	if(on_ball.unum != wm.self().unum){
+	  
+	  Vector2D on_ball_position = on_ball.pos();
+	  
+	  Vector2D offsetY = Vector2D(5, 0);
+	  Vector2D offsetX = Vector2D(0,5);
+	  
+	  bool defendRight = false;
+	  
+	  if(wm.getOpponentGoalie().pos().x < wm.getOurGoalie().pos().x){
+	      defendRight = true;
+	  }
+	  
+	  if(defendRight){
+	      (offsetY * (abs(on_ball_position.y) / 34)) + offsetX;//34 is max field width
+	      target_point = on_ball_position + offsetY;
+	    }
+	    else{//defendLeft
+	      (offsetY * (abs(on_ball_position.y) / 34)) - offsetX;//34 is max field width
+	      target_point = on_ball_position + offsetY;
+	  }
+	  Strategy::i().setTargetPosition(wm.self().unum(), Vector2D(target_point.x, target_point.y));
+      }
+    
     const double dash_power = Strategy::get_normal_dash_power( wm );
 
     double dist_thr = wm.ball().distFromSelf() * 0.1;
@@ -126,3 +153,4 @@ Bhv_BasicMove::execute( PlayerAgent * agent )
 
     return true;
 }
+

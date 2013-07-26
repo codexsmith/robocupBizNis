@@ -30,6 +30,8 @@
 
 #include "role_center_back.h"
 
+#include "bhv_defensive_move.h"
+
 #include "bhv_chain_action.h"
 #include "bhv_basic_offensive_kick.h"
 #include "bhv_basic_move.h"
@@ -104,5 +106,5 @@ RoleCenterBack::doKick( PlayerAgent * agent )
 void
 RoleCenterBack::doMove( PlayerAgent * agent )
 {
-    Bhv_BasicMove().execute( agent );
+    Bhv_DefensiveMove().execute( agent );
 }

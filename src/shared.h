@@ -27,14 +27,22 @@ public:
         return static_cast<char *>(getInstance().region.get_address());
     }
     
+    static inline char * getCommandP()
+    {
+        return static_cast<char *>(getInstance().regionP.get_address());
+    }
+    
+    
 private:
     mapped_region region;
+    mapped_region regionP;
         
     inline Shared()
     {
         shared_memory_object shared(open_or_create, "shared", read_write);
         shared.truncate(1024);
         region = mapped_region(shared, read_write);
+        regionP = mapped_region(shared, read_write);
     };
     
     static inline Shared& getInstance()

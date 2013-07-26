@@ -30,6 +30,7 @@
 
 #include "role_center_forward.h"
 
+#include "bhv_forward_move.h"
 
 #include "bhv_chain_action.h"
 #include "bhv_basic_offensive_kick.h"
@@ -105,5 +106,6 @@ RoleCenterForward::doKick( PlayerAgent * agent )
 void
 RoleCenterForward::doMove( PlayerAgent * agent )
 {
-    Bhv_BasicMove().execute( agent );
+  //BIZNIS
+    Bhv_ForwardMove().execute( agent );
 }

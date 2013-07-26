@@ -123,9 +123,8 @@ private:
     rcsc::Formation::Ptr M_indirect_freekick_our_formation;
 
 
-    int M_goalie_unum;
-
-
+    int M_goalie_unum;    
+    
     // situation type
     SituationType M_current_situation;
 
@@ -172,10 +171,13 @@ public:
     void exchangeRole( const int unum0,
                        const int unum1 );
 
+
+    void setTargetPosition(const int unum, rcsc::Vector2D newPos);
+    
     //
     // accessor to the current information
     //
-
+    
     int goalieUnum() const { return M_goalie_unum; }
 
     int roleNumber( const int unum ) const
