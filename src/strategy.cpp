@@ -648,7 +648,7 @@ Strategy::updatePosition( const WorldModel & wm )
         ball_step = std::min( 1000, wm.interceptTable()->teammateReachCycle() );
         ball_step = std::min( ball_step, wm.interceptTable()->opponentReachCycle() );
         ball_step = std::min( ball_step, wm.interceptTable()->selfReachCycle() );
-    }
+    }static
 
     Vector2D ball_pos = wm.ball().inertiaPoint( ball_step );
 
@@ -752,8 +752,16 @@ Strategy::getPositionType( const int unum ) const
 }
 
 void
-Strategy::setTargetPosition(const int unum, Vector2D newPos){
-  M_positions[unum - 1] = newPos;
+Strategy::setTargetPosition(int unum, int x, int y){
+  updateM_position(unum,x,y);
+}
+
+void
+Strategy::updateM_position(int unum, int x, int y){
+ const Vector2D& next = Vector2D(x,y);
+  
+  M_positions.erase(M_positions.begin()+(unum - 1));
+  M_positions.insert(M_positions.begin()+(unum - 1), next); 
 }
 
 

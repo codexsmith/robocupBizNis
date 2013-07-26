@@ -10,17 +10,23 @@
 *.sh
 
 .deps/
-src/Make*
+src/Makefile
+src/Makefile.in
 
+Makefile
+Makefile.in
+Makefile.am
+.cproject
+.project
+make*
+autom4*
 .directory
 config*
-*Make*
-*make
+Makefile
 m4/
 nbproject/
 *~
 NEWS
-make*
 /AUTHORS
 /COPYING
 /ChangeLog

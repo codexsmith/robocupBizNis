@@ -40,6 +40,8 @@ public:
 
 private:
     double getDashPower( const rcsc::PlayerAgent * agent );
+    
+    bool const static DEBUG = true;
 };
 
 #endif

@@ -92,23 +92,27 @@ Bhv_DefensiveMove::execute( PlayerAgent * agent )
         return true;
     }
 
-    const Vector2D target_point = Strategy::i().getPosition( wm.self().unum() );
+   Vector2D target_point = Strategy::i().getPosition( wm.self().unum() );
     
     //BIZNIS
-        PlayerObject on_ball = wm.getTeammateNearestToBall();
-	
-	if(on_ball.unum != wm.self().unum){
+      bool defendRight = false;
 	  
-	  Vector2D on_ball_position = on_ball.pos();
+      if(wm.getOpponentGoalie()->pos().x < wm.getOurGoalie()->pos().x){
+	  defendRight = true;
+      }
+      if(defendRight){
+	 if(wm.theirOffenseLineX() > 48){
+	 
+	  const PlayerObject* on_ball = wm.getTeammateNearestToBall(3, false);
+			
+	if(on_ball->unum() != wm.self().unum()){
+	  
+	  Vector2D on_ball_position = on_ball->pos();
 	  
 	  Vector2D offsetY = Vector2D(5, 0);
 	  Vector2D offsetX = Vector2D(0,5);
 	  
-	  bool defendRight = false;
 	  
-	  if(wm.getOpponentGoalie().pos().x < wm.getOurGoalie().pos().x){
-	      defendRight = true;
-	  }
 	  
 	  if(defendRight){
 	      (offsetY * (abs(on_ball_position.y) / 34)) + offsetX;//34 is max field width
@@ -118,8 +122,39 @@ Bhv_DefensiveMove::execute( PlayerAgent * agent )
 	      (offsetY * (abs(on_ball_position.y) / 34)) - offsetX;//34 is max field width
 	      target_point = on_ball_position + offsetY;
 	  }
-	  Strategy::i().setTargetPosition(wm.self().unum(), Vector2D(target_point.x, target_point.y));
+	  Strategy::i().setTargetPosition(wm.self().unum(), target_point.x, target_point.y);
+      
+	  }
+	}
       }
+      else{//defendLeft
+	 if(wm.theirOffenseLineX() < 19){
+	  const PlayerObject* on_ball = wm.getTeammateNearestToBall(3, false);
+			
+	if(on_ball->unum() != wm.self().unum()){
+	  
+	  Vector2D on_ball_position = on_ball->pos();
+	  
+	  Vector2D offsetY = Vector2D(5, 0);
+	  Vector2D offsetX = Vector2D(0,5);
+	  
+	  if(defendRight){
+	      (offsetY * (abs(on_ball_position.y) / 34)) + offsetX;//34 is max field width
+	      target_point = on_ball_position + offsetY;
+	    }
+	    else{//defendLeft
+	      (offsetY * (abs(on_ball_position.y) / 34)) - offsetX;//34 is max field width
+	      target_point = on_ball_position + offsetY;
+	  }
+// 	  Strategy::i().setTargetPosition(wm.self().unum(), target_point.x, target_point.y);
+      }
+	   
+	   
+	}
+      }
+      
+	  
+        
     
     const double dash_power = Strategy::get_normal_dash_power( wm );
 

@@ -147,7 +147,6 @@ public:
     Strategy & instance();
 
     static
-    const
     Strategy & i()
       {
           return instance();
@@ -172,7 +171,7 @@ public:
                        const int unum1 );
 
 
-    void setTargetPosition(const int unum, rcsc::Vector2D newPos);
+    void setTargetPosition(int unum, int x, int y);
     
     //
     // accessor to the current information
@@ -196,6 +195,9 @@ public:
 
 
 private:
+  
+    void updateM_position(int unum, int x, int y);
+  
     void updateSituation( const rcsc::WorldModel & wm );
     // update the current position table
     void updatePosition( const rcsc::WorldModel & wm );

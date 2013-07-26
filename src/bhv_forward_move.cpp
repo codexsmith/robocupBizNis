@@ -92,21 +92,25 @@ Bhv_ForwardMove::execute( PlayerAgent * agent )
         return true;
     }
 
-    const Vector2D target_point = Strategy::i().getPosition( wm.self().unum() );
+    Vector2D target_point = Strategy::i().getPosition( wm.self().unum() );
     
     //BIZNIS
-    if(Shared::getCommand() == 'T'){
-        PlayerObject on_ball = wm.getTeammateNearestToBall();
-        Vector2D on_ball_position = on_ball.pos();
+    char triangle = 'T';
+    if(Shared::getCommand() == &triangle){
+      if(DEBUG){  
+      std::cout << "forward triangle" <<std::endl;
+      }
+        const PlayerObject* on_ball = wm.getTeammateNearestToBall(3,false);
+        Vector2D on_ball_position = on_ball->pos();
         
-	if(on_ball.unum != wm.self().unum){
+	if(on_ball->unum() != wm.self().unum()){
 	
         Vector2D offsetY = Vector2D(7, 0);
 	Vector2D offsetX = Vector2D(0,7);
         
         bool attackRight = false;
         
-        if(wm.getOpponentGoalie().pos().x > wm.getOurGoalie().pos().x){
+        if(wm.getOpponentGoalie()->pos().x > wm.getOurGoalie()->pos().x){
             attackRight = true;
         }
         
@@ -114,7 +118,8 @@ Bhv_ForwardMove::execute( PlayerAgent * agent )
         if(on_ball_position.y > wm.self().pos().y){
             if(attackRight){
 		(offsetY * -1) - offsetX;
-		target_point = on_ball_position + offsetY;
+		on_ball_position.operator+=(offsetY);
+		target_point = on_ball_position;
 	      }
 	      else{//attackLeft
 		(offsetY * -1) + offsetX;
@@ -132,7 +137,7 @@ Bhv_ForwardMove::execute( PlayerAgent * agent )
 	      }
 	  }
 	}
-	Strategy::i().setTargetPosition(wm.self().unum(), Vector2D(target_point.x, target_point.y));
+// 	Strategy::i().setTargetPosition(wm.self().unum(), target_point.x, target_point.y);
 	
     }
     
