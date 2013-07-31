@@ -1,9 +1,9 @@
 from decimal import Decimal
 
 #basis formation
-infile = 'offense-formation.conf'
+infile = 'defense-formation.conf'
 #new formation
-outfile = 'bias-left-formation.conf'
+outfile = 'positive-formation.conf'
 
 with open(infile) as inf, open(outfile, "w") as outf:
 	for num, line in enumerate(inf, 1):
@@ -13,5 +13,5 @@ with open(infile) as inf, open(outfile, "w") as outf:
 			out = line
 		else:
 			# Modify this line. split[1] is X and split[2] is Y. Middle of field is (0, 0)
-			out = split[0] + ' ' + split[1] + ' ' + str(Decimal(split[2]) / 2 - 17) + '\n'
+			out = split[0] + ' ' + str(Decimal(split[1]) / 2 + 25) + ' ' + split[2] + '\n'
 		outf.writelines(out)

@@ -15,10 +15,10 @@ struct commandStruct
 {
     // No space between ':' and characters, i.e. A:H, not A: H
     char aggression; // A:[H,M,L]     High, Medium, Low
-    char strategy;   // S:[P,D,H]     Pass, Dribble, Hold
-    char location;   // L:[L,C,R,S]   Left, Center, Right, Sidelines
+    char strategy;   // S:[P,D,H,N]     Pass, Dribble, Hold, None
+    char location;   // L:[L,C,R,N,P,S]   Left, Center, Right, Negative, Positive, Sidelines
     
-    commandStruct(): aggression('N'), strategy('N'), location('N') { }
+    commandStruct(): aggression('L'), strategy('N'), location('N') { }
 };
 
 class Shared

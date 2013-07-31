@@ -91,6 +91,8 @@ const std::string Strategy::INDIRECT_FREEKICK_OUR_FORMATION_CONF = "indirect-fre
 const std::string Strategy::BIAS_LEFT_CONF = "bias-left-formation.conf";
 const std::string Strategy::BIAS_CENTER_CONF = "bias-center-formation.conf";
 const std::string Strategy::BIAS_RIGHT_CONF = "bias-right-formation.conf";
+const std::string Strategy::NEGATIVE_CONF = "negative-formation.conf";
+const std::string Strategy::POSITIVE_CONF = "positive-formation.conf";
 const std::string Strategy::SIDELINE_CONF = "sideline-formation.conf";
 
 /*-------------------------------------------------------------------*/
@@ -296,21 +298,35 @@ Strategy::read( const std::string & formation_dir )
     M_bias_left_formation = readFormation(configpath + BIAS_LEFT_CONF);
     if (!M_bias_left_formation)
     {
-        std::cerr << "Failed to read attack left formation" << std::endl;
+        std::cerr << "Failed to read bias left formation" << std::endl;
         return false;
     }
     
     M_bias_center_formation = readFormation(configpath + BIAS_CENTER_CONF);
     if (!M_bias_center_formation)
     {
-        std::cerr << "Failed to read attack center formation" << std::endl;
+        std::cerr << "Failed to read bias center formation" << std::endl;
         return false;
     }
     
     M_bias_right_formation = readFormation(configpath + BIAS_RIGHT_CONF);
     if (!M_bias_right_formation)
     {
-        std::cerr << "Failed to read attack right formation" << std::endl;
+        std::cerr << "Failed to read bias right formation" << std::endl;
+        return false;
+    }
+    
+    M_negative_formation = readFormation(configpath + NEGATIVE_CONF);
+    if (!M_negative_formation)
+    {
+        std::cerr << "Failed to read negative formation" << std::endl;
+        return false;
+    }
+    
+    M_positive_formation = readFormation(configpath + POSITIVE_CONF);
+    if (!M_positive_formation)
+    {
+        std::cerr << "Failed to read positive formation" << std::endl;
         return false;
     }
     
@@ -852,6 +868,14 @@ Strategy::getFormation( const WorldModel & wm ) const
         else if (command == 'R')
         {
             return M_bias_right_formation;
+        }
+        else if (command == 'N')
+        {
+            return M_negative_formation;
+        }
+        else if (command == 'P')
+        {
+            return M_positive_formation;
         }
         else if (command == 'S')
         {

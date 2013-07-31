@@ -84,6 +84,8 @@ public:
     static const std::string BIAS_LEFT_CONF;
     static const std::string BIAS_CENTER_CONF;
     static const std::string BIAS_RIGHT_CONF;
+    static const std::string NEGATIVE_CONF;
+    static const std::string POSITIVE_CONF;
     static const std::string SIDELINE_CONF;
 
     enum BallArea {
@@ -130,6 +132,8 @@ private:
     rcsc::Formation::Ptr M_bias_left_formation;
     rcsc::Formation::Ptr M_bias_center_formation;
     rcsc::Formation::Ptr M_bias_right_formation;
+    rcsc::Formation::Ptr M_negative_formation;
+    rcsc::Formation::Ptr M_positive_formation;
     rcsc::Formation::Ptr M_sideline_formation;
 
     int M_goalie_unum;    
