@@ -8,6 +8,8 @@
 *.gch
 
 *.sh
+*.rcg
+*.rcl
 
 .deps/
 src/Makefile

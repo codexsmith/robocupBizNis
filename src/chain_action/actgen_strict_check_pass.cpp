@@ -51,7 +51,10 @@ ActGen_StrictCheckPass::generate( std::vector< ActionStatePair > * result,
                                   const WorldModel & wm,
                                   const std::vector< ActionStatePair > & path ) const
 {
-    if (std::string("P").find(*Shared::getCommand()) == std::string::npos)
+    // Available for high-aggression passing and holding
+    commandStruct *commands = Shared::getCommand();
+    if (!(commands->aggression == 'H' &&
+            (commands->strategy == 'P' || commands->strategy == 'H')))
     {
         return;
     }

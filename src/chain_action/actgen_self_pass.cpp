@@ -48,7 +48,10 @@ ActGen_SelfPass::generate( std::vector< ActionStatePair > * result,
                            const WorldModel & wm,
                            const std::vector< ActionStatePair > & path ) const
 {
-    if (std::string("PD").find(*Shared::getCommand()) == std::string::npos)
+    // Available for high-aggression dribbling and holding
+    commandStruct *commands = Shared::getCommand();
+    if (!(commands->aggression == 'H' &&
+            (commands->strategy == 'D' || commands->strategy == 'H')))
     {
         return;
     }

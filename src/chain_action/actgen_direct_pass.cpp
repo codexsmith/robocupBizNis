@@ -113,7 +113,8 @@ ActGen_DirectPass::generate( std::vector< ActionStatePair > * result,
                              const WorldModel & current_wm,
                              const std::vector< ActionStatePair > & path ) const
 {
-    if (std::string("HP").find(*Shared::getCommand()) == std::string::npos)
+    // Not available for dribbling strategy
+    if (Shared::getCommand()->strategy == 'D')
     {
         return;
     }

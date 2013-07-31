@@ -52,6 +52,7 @@
 
 #include "role_keepaway_keeper.h"
 #include "role_keepaway_taker.h"
+#include "shared.h"
 
 #include <rcsc/formation/formation_static.h>
 #include <rcsc/formation/formation_dt.h>
@@ -87,6 +88,10 @@ const std::string Strategy::SETPLAY_OUR_FORMATION_CONF = "setplay-our-formation.
 const std::string Strategy::INDIRECT_FREEKICK_OPP_FORMATION_CONF = "indirect-freekick-opp-formation.conf";
 const std::string Strategy::INDIRECT_FREEKICK_OUR_FORMATION_CONF = "indirect-freekick-our-formation.conf";
 
+const std::string Strategy::BIAS_LEFT_CONF = "bias-left-formation.conf";
+const std::string Strategy::BIAS_CENTER_CONF = "bias-center-formation.conf";
+const std::string Strategy::BIAS_RIGHT_CONF = "bias-right-formation.conf";
+const std::string Strategy::SIDELINE_CONF = "sideline-formation.conf";
 
 /*-------------------------------------------------------------------*/
 /*!
@@ -285,6 +290,34 @@ Strategy::read( const std::string & formation_dir )
     if ( ! M_indirect_freekick_our_formation )
     {
         std::cerr << "Failed to read indirect freekick our formation" << std::endl;
+        return false;
+    }
+    
+    M_bias_left_formation = readFormation(configpath + BIAS_LEFT_CONF);
+    if (!M_bias_left_formation)
+    {
+        std::cerr << "Failed to read attack left formation" << std::endl;
+        return false;
+    }
+    
+    M_bias_center_formation = readFormation(configpath + BIAS_CENTER_CONF);
+    if (!M_bias_center_formation)
+    {
+        std::cerr << "Failed to read attack center formation" << std::endl;
+        return false;
+    }
+    
+    M_bias_right_formation = readFormation(configpath + BIAS_RIGHT_CONF);
+    if (!M_bias_right_formation)
+    {
+        std::cerr << "Failed to read attack right formation" << std::endl;
+        return false;
+    }
+    
+    M_sideline_formation = readFormation(configpath + SIDELINE_CONF);
+    if (!M_sideline_formation)
+    {
+        std::cerr << "Failed to read sideline formation" << std::endl;
         return false;
     }
 
@@ -648,7 +681,7 @@ Strategy::updatePosition( const WorldModel & wm )
         ball_step = std::min( 1000, wm.interceptTable()->teammateReachCycle() );
         ball_step = std::min( ball_step, wm.interceptTable()->opponentReachCycle() );
         ball_step = std::min( ball_step, wm.interceptTable()->selfReachCycle() );
-    }static
+    }// static
 
     Vector2D ball_pos = wm.ball().inertiaPoint( ball_step );
 
@@ -759,7 +792,7 @@ Strategy::setTargetPosition(int unum, int x, int y){
 void
 Strategy::updateM_position(int unum, int x, int y){
  const Vector2D& next = Vector2D(x,y);
-  
+
   M_positions.erase(M_positions.begin()+(unum - 1));
   M_positions.insert(M_positions.begin()+(unum - 1), next); 
 }
@@ -807,6 +840,24 @@ Strategy::getFormation( const WorldModel & wm ) const
     //
     if ( wm.gameMode().type() == GameMode::PlayOn )
     {
+        char command = Shared::getCommand()->location;
+        if (command == 'L')
+        {
+            return M_bias_left_formation;
+        }
+        else if (command == 'C')
+        {
+            return M_bias_center_formation;
+        }
+        else if (command == 'R')
+        {
+            return M_bias_right_formation;
+        }
+        else if (command == 'S')
+        {
+            return M_sideline_formation;
+        }
+        
         switch ( M_current_situation ) {
         case Defense_Situation:
             return M_defense_formation;

@@ -111,7 +111,7 @@ public:
         for (std::vector< ConstPtr >::const_iterator g = M_generators.begin();
                 g != M_generators.end();
                 ++g) {
-            if (*Shared::getCommand() != 'N')
+            if (Shared::getCommand()->strategy != 'N')
             {
                 (*g)->generate(result, state, wm, path);
             }

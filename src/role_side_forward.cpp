@@ -28,8 +28,7 @@
 #include <config.h>
 #endif
 
-#include "bhv_forward_move.h"
-
+//#include "bhv_forward_move.h"
 #include "role_side_forward.h"
 
 #include "bhv_chain_action.h"
@@ -107,5 +106,6 @@ void
 RoleSideForward::doMove( PlayerAgent * agent )
 {
   //BISNIZ
-    Bhv_ForwardMove().execute( agent );
+//    Bhv_ForwardMove().execute( agent );
+    Bhv_BasicMove().execute( agent );
 }

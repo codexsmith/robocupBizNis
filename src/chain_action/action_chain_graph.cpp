@@ -492,7 +492,7 @@ ActionChainGraph::calculateResultBestFirstSearch(const WorldModel & wm,
                         "<<<< UserCommand.");
 #endif
 //BIZNIS
-            printf("%*d : %s\n", 2, wm.self().unum(), it->M_action->description());
+//            printf("%*d : %s\n", 2, wm.self().unum(), it->M_action->description());
 //            std::cout << wm.self().unum() << ":";
 //            if ((*it).action().myCommand(*Shared::getCommand())) {
 //                ev = DBL_MAX;

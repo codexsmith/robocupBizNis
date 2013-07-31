@@ -56,14 +56,14 @@ sigExitHandle( int )
 
 };
 
-void * commandInput(void *null)
+void * commandInput(void *)
 {
     std::string input;
     for(;;)
     {
         printf("%s", "\n>");
         getline(std::cin, input);
-        Shared::setCommand(input[0]);
+        Shared::setCommand(&input);
     }
     
     return 0;

@@ -53,7 +53,8 @@ ActGen_Shoot::generate( std::vector< ActionStatePair > * result,
                         const WorldModel & wm,
                         const std::vector< ActionStatePair > & ) const
 {
-    if (std::string("HPD").find(*Shared::getCommand()) == std::string::npos)
+    // Not available for holding strategy
+    if (Shared::getCommand()->strategy == 'H')
     {
         return;
     }

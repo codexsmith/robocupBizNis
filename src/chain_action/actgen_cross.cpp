@@ -52,7 +52,10 @@ ActGen_Cross::generate(std::vector< ActionStatePair > * result,
         const WorldModel & wm,
         const std::vector< ActionStatePair > & path) const
 {
-    if (std::string("P").find(*Shared::getCommand()) == std::string::npos)
+    // Available for medium and high-aggression passing
+    commandStruct *commands = Shared::getCommand();
+    if (!(commands->strategy == 'P' &&
+            (commands->aggression == 'H' || commands->aggression == 'M')))
     {
         return;
     }

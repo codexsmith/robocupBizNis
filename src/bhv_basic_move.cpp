@@ -28,8 +28,7 @@
 #include <config.h>
 #endif
 
-#include "shared.h"
-
+//#include "shared.h"
 #include "bhv_basic_move.h"
 
 #include "strategy.h"
@@ -93,7 +92,7 @@ Bhv_BasicMove::execute( PlayerAgent * agent )
     }
 
     const Vector2D target_point = Strategy::i().getPosition( wm.self().unum() );
-    
+
     const double dash_power = Strategy::get_normal_dash_power( wm );
 
     double dist_thr = wm.ball().distFromSelf() * 0.1;
