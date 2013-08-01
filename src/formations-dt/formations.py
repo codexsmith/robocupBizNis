@@ -12,6 +12,10 @@ with open(infile) as inf, open(outfile, "w") as outf:
 		if num < 16 or split[0] == '-----' or split[0] == 'Ball' or split[0] == '1' or split[0] == 'End':
 			out = line
 		else:
-			# Modify this line. split[1] is X and split[2] is Y. Middle of field is (0, 0)
+			# Modify this line.
+			# split[1] is X and split[2] is Y.
+			# Middle of field is (0, 0)
+			# Defensive half is negative, offensive half is positive
+			# Left wing is negative, right wing is positive
 			out = split[0] + ' ' + str(Decimal(split[1]) / 2 + 25) + ' ' + split[2] + '\n'
 		outf.writelines(out)

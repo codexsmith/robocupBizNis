@@ -49,6 +49,12 @@ ActGen_ShortDribble::generate( std::vector< ActionStatePair > * result,
                                const WorldModel & wm,
                                const std::vector< ActionStatePair > & path ) const
 {
+    // Not available for passing strategy
+    if (Shared::getCommand()->strategy == 'P')
+    {
+        return;
+    }
+    
     // generate only first actions
     if ( ! path.empty() )
     {
